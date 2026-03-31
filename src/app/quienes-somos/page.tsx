@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
@@ -9,21 +8,25 @@ export const metadata: Metadata = {
 };
 
 export default function QuienesSomosPage() {
+  const values = [
+    "Atención al detalle. Cuidamos cada terminación priorizando la estética y los materiales de calidad.",
+    "Gestión integral. Participamos en cada etapa del proyecto para garantizar coherencia y eficiencia.",
+    "Compromiso post-entrega. Nuestro vínculo con el cliente no termina cuando se firma la escritura.",
+    "Trayectoria comprobada. Más de dos décadas de proyectos en Argentina respaldan cada nuevo emprendimiento.",
+  ];
+
   return (
     <div className="section-white">
       <section className="section-padding section-surface">
         <div className="container-sar">
-          <Reveal className="grid gap-10 md:grid-cols-[1.1fr_1fr] md:items-end">
-            <div className="space-y-5">
-              <p className="eyebrow">QUIÉNES SOMOS</p>
-              <h1 className="text-4xl font-semibold tracking-tight md:text-6xl">
-                Más de 20 años construyendo proyectos únicos
-              </h1>
-              <p className="text-lg leading-relaxed text-muted">
-                SAR Inversiones & Desarrollos | Desarrolladora inmobiliaria en Argentina
-              </p>
-            </div>
-            <div className="h-[340px] overflow-hidden rounded-3xl border border-brand/15 bg-[url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80')] bg-cover bg-center md:h-[410px]" />
+          <Reveal className="space-y-6">
+            <div className="h-[340px] rounded-3xl border border-brand/15 bg-white md:h-[430px]" />
+            <h1 className="max-w-5xl text-4xl font-semibold tracking-tight md:text-6xl">
+              Más de 20 años construyendo proyectos únicos
+            </h1>
+            <p className="text-lg leading-relaxed text-muted">
+              SAR Inversiones & Desarrollos | Desarrolladora inmobiliaria en Argentina
+            </p>
           </Reveal>
         </div>
       </section>
@@ -76,12 +79,7 @@ export default function QuienesSomosPage() {
             </h2>
           </Reveal>
           <div className="mt-10 grid gap-5 md:grid-cols-2">
-            {[
-              "Atención al detalle. Cuidamos cada terminación priorizando la estética y los materiales de calidad.",
-              "Gestión integral. Participamos en cada etapa del proyecto para garantizar coherencia y eficiencia.",
-              "Compromiso post-entrega. Nuestro vínculo con el cliente no termina cuando se firma la escritura.",
-              "Trayectoria comprobada. Más de dos décadas de proyectos en Argentina respaldan cada nuevo emprendimiento.",
-            ].map((value, idx) => (
+            {values.map((value, idx) => (
               <Reveal
                 key={value}
                 delay={idx * 0.08}
@@ -97,11 +95,6 @@ export default function QuienesSomosPage() {
               </Reveal>
             ))}
           </div>
-          <Reveal className="mt-12">
-            <Link href="/contacto" className="btn-primary">
-              Contactanos
-            </Link>
-          </Reveal>
         </div>
       </section>
     </div>

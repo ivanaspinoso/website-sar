@@ -182,15 +182,20 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="contacto" className="section-padding section-white">
-        <div className="container-sar">
-          <Reveal delay={0.12} className="panel rounded-3xl p-10 md:p-14">
+      <section id="contacto" className="relative overflow-hidden section-white">
+        <div className="absolute inset-0 bg-[url('/contacto.jpg')] bg-cover bg-center" />
+        <div className="absolute inset-0 bg-brand/60" />
+        <div className="container-sar relative section-padding">
+          <Reveal
+            delay={0.12}
+            className="panel mx-auto max-w-4xl rounded-3xl bg-white/95 p-10 transition-transform duration-300 hover:-translate-y-1 md:p-14"
+          >
             <h2 className="max-w-3xl text-3xl font-semibold tracking-tight md:text-5xl">
-              ¿Buscás un desarrollo dónde invertir?
+              ¿Buscás un Desarrollo dónde invertir?
             </h2>
             <p className="mt-4 max-w-2xl text-muted">
-              Explorá oportunidades de desarrollo con un equipo con más de 20 años en el
-              mercado.
+              Explorá oportunidades de desarrollo con un equipo con más de 20 años en
+              el mercado.
             </p>
             <div className="mt-8">
               <Link href="/contacto#formulario" className="btn-primary">
@@ -200,6 +205,7 @@ export default function Home() {
           </Reveal>
         </div>
       </section>
+
     </>
   );
 }

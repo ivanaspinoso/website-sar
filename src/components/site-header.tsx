@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -16,10 +17,17 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-brand/15 bg-white/90 backdrop-blur-md">
-      <div className="container-sar flex h-20 items-center justify-between">
-        <Link href="/" className="text-lg font-semibold tracking-tight text-foreground">
-          SAR Desarrollos
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-brand/15 bg-white/95 backdrop-blur-md">
+      <div className="container-sar flex h-24 items-center justify-between">
+        <Link href="/" className="inline-flex items-center" aria-label="Inicio - SAR Desarrollos">
+          <Image
+            src="/logo1.png"
+            alt="Logo de SAR Inversiones y Desarrollos"
+            width={220}
+            height={88}
+            priority
+            className="h-16 w-auto md:h-20"
+          />
         </Link>
 
         <button
@@ -36,12 +44,12 @@ export function SiteHeader() {
           </div>
         </button>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-9 md:flex">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-muted transition hover:text-foreground"
+              className="text-sm font-semibold text-muted transition hover:text-foreground"
             >
               {item.label}
             </Link>

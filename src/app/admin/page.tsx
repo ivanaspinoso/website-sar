@@ -1,8 +1,10 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+import { buildProjectSlug, parseProjectContent } from "@/lib/proyectos";
 
 type Proyecto = {
   id: string;
@@ -15,34 +17,12 @@ type Proyecto = {
   destacado: boolean | null;
 };
 
-type ProyectoForm = {
-  titulo: string;
-  direccion: string;
-  anio: string;
-  descripcion: string;
-  categoria: string;
-  imagen_url: string;
-  destacado: boolean;
-};
-
-const initialForm: ProyectoForm = {
-  titulo: "",
-  direccion: "",
-  anio: "",
-  descripcion: "",
-  categoria: "",
-  imagen_url: "",
-  destacado: false,
-};
-
 export default function AdminPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
-  const [saving, setSaving] = useState(false);
   const [items, setItems] = useState<Proyecto[]>([]);
-  const [form, setForm] = useState<ProyectoForm>(initialForm);
-  const [editingId, setEditingId] = useState<string | null>(null);
   const [errorMsg, setErrorMsg] = useState("");
+  const [search, setSearch] = useState("");
 
   async function loadProjects() {
     const { data, error } = await supabase
@@ -87,66 +67,6 @@ export default function AdminPage() {
     void init();
   }, [router]);
 
-  function resetForm() {
-    setForm(initialForm);
-    setEditingId(null);
-  }
-
-  function startEdit(item: Proyecto) {
-    setEditingId(item.id);
-    setForm({
-      titulo: item.titulo ?? "",
-      direccion: item.direccion ?? "",
-      anio: item.anio ?? "",
-      descripcion: item.descripcion ?? "",
-      categoria: item.categoria ?? "",
-      imagen_url: item.imagen_url ?? "",
-      destacado: Boolean(item.destacado),
-    });
-  }
-
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setSaving(true);
-    setErrorMsg("");
-
-    const payload = {
-      titulo: form.titulo.trim(),
-      direccion: form.direccion.trim(),
-      anio: form.anio.trim(),
-      descripcion: form.descripcion.trim(),
-      categoria: form.categoria.trim(),
-      imagen_url: form.imagen_url.trim(),
-      destacado: form.destacado,
-    };
-
-    if (!payload.titulo) {
-      setSaving(false);
-      setErrorMsg("El titulo es obligatorio.");
-      return;
-    }
-
-    let error: Error | null = null;
-
-    if (editingId) {
-      const response = await supabase.from("proyectos").update(payload).eq("id", editingId);
-      error = response.error;
-    } else {
-      const response = await supabase.from("proyectos").insert(payload);
-      error = response.error;
-    }
-
-    setSaving(false);
-
-    if (error) {
-      setErrorMsg(error.message);
-      return;
-    }
-
-    resetForm();
-    await loadProjects();
-  }
-
   async function handleDelete(id: string) {
     const confirmDelete = window.confirm("Seguro que queres eliminar este proyecto?");
     if (!confirmDelete) return;
@@ -156,11 +76,6 @@ export default function AdminPage() {
       setErrorMsg(error.message);
       return;
     }
-
-    if (editingId === id) {
-      resetForm();
-    }
-
     await loadProjects();
   }
 
@@ -168,6 +83,16 @@ export default function AdminPage() {
     await supabase.auth.signOut();
     router.push("/admin/login");
   }
+
+  const filteredItems = useMemo(() => {
+    const term = search.trim().toLowerCase();
+    if (!term) return items;
+    return items.filter((item) =>
+      [item.titulo, item.direccion, item.categoria, item.anio]
+        .filter(Boolean)
+        .some((value) => String(value).toLowerCase().includes(term)),
+    );
+  }, [items, search]);
 
   if (loading) {
     return (
@@ -184,97 +109,72 @@ export default function AdminPage() {
           <div>
             <p className="eyebrow">ADMIN</p>
             <h1 className="mt-2 text-3xl font-semibold">Gestion de proyectos</h1>
+            <p className="mt-2 text-sm text-muted">
+              Crea, edita y publica el contenido completo de cada proyecto desde un solo lugar.
+            </p>
           </div>
-          <button onClick={handleLogout} className="rounded-md border border-brand/20 px-4 py-2 text-sm font-medium">
-            Cerrar sesion
-          </button>
+          <div className="flex gap-2">
+            <Link href="/admin/proyectos/nuevo" className="rounded-md bg-foreground px-4 py-2 text-sm font-medium text-white">
+              Crear proyecto
+            </Link>
+            <button
+              onClick={handleLogout}
+              className="rounded-md border border-brand/20 px-4 py-2 text-sm font-medium"
+            >
+              Cerrar sesion
+            </button>
+          </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="grid gap-3 rounded-2xl border border-brand/15 bg-white p-5 md:grid-cols-2">
-          <input
-            className="rounded-md border border-brand/20 px-3 py-2"
-            placeholder="Titulo *"
-            value={form.titulo}
-            onChange={(event) => setForm((prev) => ({ ...prev, titulo: event.target.value }))}
-            required
-          />
-          <input
-            className="rounded-md border border-brand/20 px-3 py-2"
-            placeholder="Anio"
-            value={form.anio}
-            onChange={(event) => setForm((prev) => ({ ...prev, anio: event.target.value }))}
-          />
-          <input
-            className="rounded-md border border-brand/20 px-3 py-2 md:col-span-2"
-            placeholder="Direccion"
-            value={form.direccion}
-            onChange={(event) => setForm((prev) => ({ ...prev, direccion: event.target.value }))}
-          />
-          <input
-            className="rounded-md border border-brand/20 px-3 py-2"
-            placeholder="Categoria"
-            value={form.categoria}
-            onChange={(event) => setForm((prev) => ({ ...prev, categoria: event.target.value }))}
-          />
-          <input
-            className="rounded-md border border-brand/20 px-3 py-2"
-            placeholder="URL de imagen"
-            value={form.imagen_url}
-            onChange={(event) => setForm((prev) => ({ ...prev, imagen_url: event.target.value }))}
-          />
-          <textarea
-            className="min-h-28 rounded-md border border-brand/20 px-3 py-2 md:col-span-2"
-            placeholder="Descripcion"
-            value={form.descripcion}
-            onChange={(event) => setForm((prev) => ({ ...prev, descripcion: event.target.value }))}
-          />
-          <label className="flex items-center gap-2 text-sm md:col-span-2">
+        <div className="grid gap-3 sm:grid-cols-3">
+          <article className="rounded-xl border border-brand/15 bg-white p-4">
+            <p className="text-xs uppercase tracking-wide text-muted">Total proyectos</p>
+            <p className="mt-2 text-2xl font-semibold">{items.length}</p>
+          </article>
+          <article className="rounded-xl border border-brand/15 bg-white p-4">
+            <p className="text-xs uppercase tracking-wide text-muted">Destacados</p>
+            <p className="mt-2 text-2xl font-semibold">{items.filter((item) => item.destacado).length}</p>
+          </article>
+          <article className="rounded-xl border border-brand/15 bg-white p-4">
+            <p className="text-xs uppercase tracking-wide text-muted">Mostrando</p>
+            <p className="mt-2 text-2xl font-semibold">{filteredItems.length}</p>
+          </article>
+        </div>
+
+        {errorMsg ? <p className="rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700">{errorMsg}</p> : null}
+
+        <aside className="space-y-4 rounded-2xl border border-brand/15 bg-white p-5">
+            <div>
+              <h2 className="text-xl font-semibold">Todos los proyectos</h2>
+              <p className="mt-1 text-sm text-muted">Buscalos por nombre, anio, categoria o direccion.</p>
+            </div>
             <input
-              type="checkbox"
-              checked={form.destacado}
-              onChange={(event) => setForm((prev) => ({ ...prev, destacado: event.target.checked }))}
+              className="w-full rounded-md border border-brand/20 px-3 py-2"
+              placeholder="Buscar proyecto..."
+              value={search}
+              onChange={(event) => setSearch(event.target.value)}
             />
-            Destacado
-          </label>
-
-          {errorMsg ? <p className="text-sm text-red-600 md:col-span-2">{errorMsg}</p> : null}
-
-          <div className="flex gap-2 md:col-span-2">
-            <button
-              type="submit"
-              className="rounded-md bg-foreground px-4 py-2 text-sm font-medium text-white disabled:opacity-60"
-              disabled={saving}
-            >
-              {saving ? "Guardando..." : editingId ? "Actualizar proyecto" : "Crear proyecto"}
-            </button>
-            {editingId ? (
-              <button
-                type="button"
-                onClick={resetForm}
-                className="rounded-md border border-brand/20 px-4 py-2 text-sm font-medium"
-              >
-                Cancelar edicion
-              </button>
-            ) : null}
-          </div>
-        </form>
-
-        <div className="grid gap-4">
-          {items.map((item) => (
-            <article key={item.id} className="rounded-2xl border border-brand/15 bg-white p-4">
+            <div className="max-h-[860px] space-y-3 overflow-auto pr-1">
+              {filteredItems.map((item) => (
+                <article key={item.id} className="rounded-xl border border-brand/15 bg-surface p-4">
               <p className="text-xs font-semibold uppercase tracking-wide text-muted">
                 {item.anio || "-"} {item.categoria ? `- ${item.categoria}` : ""}
               </p>
               <h2 className="mt-2 text-xl font-semibold">{item.titulo}</h2>
               <p className="mt-1 text-sm text-muted">{item.direccion || "-"}</p>
-              {item.descripcion ? <p className="mt-3 text-sm text-muted">{item.descripcion}</p> : null}
-              <div className="mt-4 flex gap-2">
-                <button
-                  onClick={() => startEdit(item)}
+              {parseProjectContent(item.descripcion).resumen ? (
+                <p className="mt-3 text-sm text-muted">{parseProjectContent(item.descripcion).resumen}</p>
+              ) : null}
+              <div className="mt-4 flex flex-wrap gap-2">
+                <Link href={`/admin/proyectos/${item.id}`} className="rounded-md border border-brand/20 px-3 py-2 text-sm font-medium">
+                  Editar
+                </Link>
+                <Link
+                  href={`/proyectos/${buildProjectSlug(item)}`}
                   className="rounded-md border border-brand/20 px-3 py-2 text-sm font-medium"
                 >
-                  Editar
-                </button>
+                  Abrir en web
+                </Link>
                 <button
                   onClick={() => handleDelete(item.id)}
                   className="rounded-md border border-red-300 px-3 py-2 text-sm font-medium text-red-700"
@@ -283,13 +183,14 @@ export default function AdminPage() {
                 </button>
               </div>
             </article>
-          ))}
-          {items.length === 0 ? (
-            <p className="rounded-xl border border-dashed border-brand/20 p-4 text-sm text-muted">
-              Todavia no hay proyectos cargados.
-            </p>
-          ) : null}
-        </div>
+              ))}
+              {filteredItems.length === 0 ? (
+                <p className="rounded-xl border border-dashed border-brand/20 p-4 text-sm text-muted">
+                  No hay proyectos para el filtro actual.
+                </p>
+              ) : null}
+            </div>
+          </aside>
       </div>
     </section>
   );

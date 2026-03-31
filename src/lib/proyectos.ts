@@ -32,6 +32,11 @@ export type ProyectoDetalleContenido = {
 
 const PROJECT_SELECT = "id,titulo,direccion,anio,categoria,imagen_url,descripcion";
 
+function normalizeEnv(value: string | undefined) {
+  if (!value) return "";
+  return value.trim().replace(/^['"]|['"]$/g, "");
+}
+
 export function slugifyProjectTitle(title: string) {
   return title
     .toLowerCase()
@@ -47,15 +52,22 @@ export function buildProjectSlug(project: ProyectoPublico) {
 }
 
 export async function getPublicProjects() {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const supabaseUrl = normalizeEnv(process.env.NEXT_PUBLIC_SUPABASE_URL ?? process.env.SUPABASE_URL);
+  const supabaseAnonKey = normalizeEnv(
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? process.env.SUPABASE_ANON_KEY,
+  );
 
   const supabase =
     supabaseUrl && supabaseAnonKey ? createClient(supabaseUrl, supabaseAnonKey) : null;
 
-  const { data } = supabase
+  const { data, error } = supabase
     ? await supabase.from("proyectos").select(PROJECT_SELECT).order("created_at", { ascending: false })
     : { data: [] as ProyectoPublico[] };
+
+  if (error) {
+    console.error("Error cargando proyectos publicos desde Supabase:", error.message);
+    return [];
+  }
 
   return (data ?? []) as ProyectoPublico[];
 }

@@ -3,7 +3,7 @@
 import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
-import { supabase } from "@/lib/supabase";
+import { SUPABASE_ENV_ERROR, supabase } from "@/lib/supabase";
 import { parseProjectContent, type ProyectoDetalleContenido } from "@/lib/proyectos";
 
 type Proyecto = {
@@ -85,6 +85,12 @@ export default function AdminProyectoFormPage() {
 
   useEffect(() => {
     async function init() {
+      if (!supabase) {
+        setErrorMsg(SUPABASE_ENV_ERROR);
+        setLoading(false);
+        return;
+      }
+
       const { data: sessionData } = await supabase.auth.getSession();
       const user = sessionData.session?.user;
 
@@ -149,6 +155,10 @@ export default function AdminProyectoFormPage() {
   }, [isCreate, params.id, router]);
 
   async function uploadImage(file: File) {
+    if (!supabase) {
+      throw new Error(SUPABASE_ENV_ERROR);
+    }
+
     const ext = file.name.split(".").pop()?.toLowerCase() || "jpg";
     const fileName = `${crypto.randomUUID()}.${ext}`;
     const filePath = `admin/${fileName}`;
@@ -204,6 +214,12 @@ export default function AdminProyectoFormPage() {
     event.preventDefault();
     setSaving(true);
     setErrorMsg("");
+
+    if (!supabase) {
+      setErrorMsg(SUPABASE_ENV_ERROR);
+      setSaving(false);
+      return;
+    }
 
     const detailContent: ProyectoDetalleContenido = {
       estado: form.estado.trim() || undefined,

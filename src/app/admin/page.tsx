@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { supabase } from "@/lib/supabase";
+import { SUPABASE_ENV_ERROR, supabase } from "@/lib/supabase";
 import { buildProjectSlug, parseProjectContent } from "@/lib/proyectos";
 
 type Proyecto = {
@@ -25,6 +25,11 @@ export default function AdminPage() {
   const [search, setSearch] = useState("");
 
   async function loadProjects() {
+    if (!supabase) {
+      setErrorMsg(SUPABASE_ENV_ERROR);
+      return;
+    }
+
     const { data, error } = await supabase
       .from("proyectos")
       .select("*")
@@ -40,6 +45,12 @@ export default function AdminPage() {
 
   useEffect(() => {
     async function init() {
+      if (!supabase) {
+        setErrorMsg(SUPABASE_ENV_ERROR);
+        setLoading(false);
+        return;
+      }
+
       const { data: sessionData } = await supabase.auth.getSession();
       const user = sessionData.session?.user;
 
@@ -71,6 +82,11 @@ export default function AdminPage() {
     const confirmDelete = window.confirm("Seguro que queres eliminar este proyecto?");
     if (!confirmDelete) return;
 
+    if (!supabase) {
+      setErrorMsg(SUPABASE_ENV_ERROR);
+      return;
+    }
+
     const { error } = await supabase.from("proyectos").delete().eq("id", id);
     if (error) {
       setErrorMsg(error.message);
@@ -80,6 +96,11 @@ export default function AdminPage() {
   }
 
   async function handleLogout() {
+    if (!supabase) {
+      setErrorMsg(SUPABASE_ENV_ERROR);
+      return;
+    }
+
     await supabase.auth.signOut();
     router.push("/admin/login");
   }

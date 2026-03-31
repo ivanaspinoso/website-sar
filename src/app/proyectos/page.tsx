@@ -5,6 +5,8 @@ import { Reveal } from "@/components/reveal";
 import { ParallaxMedia } from "@/components/parallax-media";
 import { buildProjectSlug, getPublicProjects, parseProjectContent } from "@/lib/proyectos";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Proyectos",
   description: "Galería de proyectos inmobiliarios finalizados y en curso de SAR en Argentina.",

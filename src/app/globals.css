@@ -2,25 +2,97 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --surface: #f6f6ff;
+  --foreground: #26276e;
+  --muted: #26276eb8;
+  --brand: #26276e;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-muted: var(--muted);
+  --color-brand: var(--brand);
+  --font-sans: var(--font-poppins);
+  --font-mono: var(--font-poppins);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-poppins), Arial, Helvetica, sans-serif;
+  text-rendering: geometricPrecision;
+  font-weight: 300;
+  line-height: 1.55;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  scroll-margin-top: 88px;
+}
+
+.font-thin-poppins {
+  font-weight: 200;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+}
+
+.font-semibold {
+  font-weight: 700;
+}
+
+.container-sar {
+  width: min(1440px, calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand/90;
+}
+
+.btn-outline {
+  @apply inline-flex items-center justify-center gap-2 rounded-full border border-brand/30 px-6 py-3 text-sm font-semibold text-foreground transition hover:border-brand hover:bg-brand/5;
+}
+
+.section-padding {
+  @apply py-20 md:py-28;
+}
+
+.section-white {
+  @apply bg-white;
+}
+
+.section-surface {
+  @apply bg-surface;
+}
+
+.panel {
+  @apply rounded-2xl border border-brand/10 bg-white p-7 shadow-[0_8px_24px_-20px_rgba(38,39,110,0.2)] transition hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-20px_rgba(38,39,110,0.28)];
+}
+
+.eyebrow {
+  @apply text-xs font-semibold tracking-[0.18em] text-muted uppercase;
+}
+
+.icon-shell {
+  @apply inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand/20 bg-white text-muted;
+}
+
+.timeline-line {
+  @apply absolute left-[1.18rem] top-0 h-full w-px bg-brand/12;
+}
+
+.input-premium {
+  @apply w-full rounded-xl border border-brand/20 bg-white px-4 py-3 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/15;
 }

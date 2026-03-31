@@ -57,7 +57,9 @@ export default function Home() {
       <section id="metricas" className="section-padding section-white">
         <div className="container-sar">
           <Reveal>
-            <p className="eyebrow mb-10">NUMEROS QUE HABLAN</p>
+            <h2 className="mb-10 text-3xl font-semibold tracking-tight md:text-4xl">
+              Números que hablan
+            </h2>
             <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
               {metrics.map((item, index) => (
                 <Reveal key={item.label} delay={0.08 * index}>

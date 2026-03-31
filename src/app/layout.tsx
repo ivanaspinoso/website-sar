@@ -18,6 +18,11 @@ export const metadata: Metadata = {
   },
   description:
     "Desarrolladora inmobiliaria en Argentina especializada en gestión integral de proyectos rentables y funcionales.",
+  icons: {
+    icon: "/logo1.png",
+    shortcut: "/logo1.png",
+    apple: "/logo1.png",
+  },
 };
 
 export default function RootLayout({

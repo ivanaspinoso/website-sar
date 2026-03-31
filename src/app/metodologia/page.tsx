@@ -35,12 +35,15 @@ export default function MetodologiaPage() {
             <Reveal
               key={number}
               delay={idx * 0.05}
-              className="panel grid gap-4 md:grid-cols-[90px_1fr]"
+              className="panel relative overflow-hidden"
             >
-              <p className="text-xl font-semibold text-muted">{number}</p>
-              <div>
-                <h2 className="text-2xl font-semibold">{title}</h2>
-                <p className="mt-2 text-muted">{text}</p>
+              <div className="timeline-line hidden md:block" />
+              <div className="grid gap-4 md:grid-cols-[90px_1fr] md:gap-6">
+                <p className="text-xl font-semibold text-muted md:pt-1">{number}</p>
+                <div>
+                  <h2 className="text-2xl font-semibold">{title}</h2>
+                  <p className="mt-2 text-muted">{text}</p>
+                </div>
               </div>
             </Reveal>
           ))}

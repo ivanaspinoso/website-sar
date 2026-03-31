@@ -58,11 +58,19 @@ h6 {
 }
 
 .btn-primary {
-  @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand/90;
+  @apply inline-flex items-center justify-center gap-2 rounded-md border border-brand bg-brand px-6 py-3 text-sm font-semibold tracking-[0.02em] text-white transition-all duration-500 ease-in-out hover:bg-brand/92 hover:opacity-95;
 }
 
 .btn-outline {
-  @apply inline-flex items-center justify-center gap-2 rounded-full border border-brand/30 px-6 py-3 text-sm font-semibold text-foreground transition hover:border-brand hover:bg-brand/5;
+  @apply inline-flex items-center justify-center gap-2 rounded-md border border-brand/35 bg-transparent px-6 py-3 text-sm font-semibold tracking-[0.02em] text-foreground transition-all duration-500 ease-in-out hover:border-brand hover:bg-brand/5;
+}
+
+.btn-light {
+  @apply inline-flex items-center justify-center gap-2 rounded-md border border-white/80 bg-white px-6 py-3 text-sm font-semibold tracking-[0.02em] text-foreground transition-all duration-500 ease-in-out hover:bg-white/90;
+}
+
+.btn-outline-light {
+  @apply inline-flex items-center justify-center gap-2 rounded-md border border-white/85 bg-transparent px-6 py-3 text-sm font-semibold tracking-[0.02em] text-white transition-all duration-500 ease-in-out hover:bg-white hover:text-foreground;
 }
 
 .section-padding {
@@ -94,5 +102,13 @@ h6 {
 }
 
 .input-premium {
-  @apply w-full rounded-xl border border-brand/20 bg-white px-4 py-3 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/15;
+  @apply w-full border-0 border-b border-brand/25 bg-transparent px-0 py-3 text-sm text-foreground outline-none transition-all duration-500 ease-in-out placeholder:text-muted/70 focus:border-brand;
+}
+
+.label-premium {
+  @apply text-xs font-semibold tracking-[0.14em] text-muted uppercase;
+}
+
+.project-card-media {
+  @apply relative aspect-[4/5] overflow-hidden rounded-xl;
 }

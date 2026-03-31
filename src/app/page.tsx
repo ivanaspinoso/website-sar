@@ -3,6 +3,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { AnimatedCounter } from "@/components/animated-counter";
 import { Reveal } from "@/components/reveal";
+import { ParallaxMedia } from "@/components/parallax-media";
 
 export const metadata: Metadata = {
   title: "Inicio",
@@ -22,27 +23,28 @@ export default function Home() {
     <>
       <section id="inicio" className="relative -mt-20">
         <div className="relative min-h-[100svh] overflow-hidden">
-          <div className="absolute inset-0 bg-[url('/heroHome.jpg')] bg-cover bg-[center_30%] md:bg-center" />
+          <ParallaxMedia className="absolute inset-0" intensity={20}>
+            <div className="h-[108%] w-full bg-[url('/heroHome.jpg')] bg-cover bg-[center_30%] md:bg-center" />
+          </ParallaxMedia>
           <div className="absolute inset-0 bg-gradient-to-b from-brand/45 via-brand/8 to-brand/30" />
-          <div className="container-sar relative min-h-[85svh] flex items-center justify-center">
-            <Reveal className="absolute left-0 max-w-6xl space-y-4 text-white md:bottom-14">
-              
-              <h1 className="text-3xl leading-[1.1] font-semibold md:text-5xl lg:text-5xl">
-                TRANSFORMAMOS TERRENOS EN PROYECTOS INMOBILIARIOS RENTABLES Y FUNCIONALES.
+          <div className="container-sar relative mt-20 flex min-h-[calc(100svh-5rem)] items-center justify-center">
+            <Reveal className="max-w-5xl space-y-5 p-6 text-center text-white md:p-9">
+              <h1 className="text-balance text-3xl leading-[1.08] font-semibold md:text-5xl lg:text-6xl">
+                TRANSFORMAMOS TERRENOS EN PROYECTOS INMOBILIARIOS RENTABLES Y FUNCIONALES
               </h1>
-              <p className="max-w-2xl text-sm font-semibold leading-relaxed text-white/90 md:text-base">
+              <p className="mx-auto max-w-2xl text-sm font-semibold leading-relaxed text-white/92 md:text-base">
                 Desarrollo inmobiliario integral en Argentina desde 2004.
               </p>
-              <div className="flex flex-col gap-3 pt-3 sm:flex-row">
+              <div className="flex flex-col items-center justify-center gap-3 pt-3 sm:flex-row">
                 <Link
                   href="#proyectos"
-                  className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-foreground transition hover:bg-white/90"
+                  className="btn-light"
                 >
                   Conocé nuestros proyectos
                 </Link>
                 <Link
                   href="#nosotros"
-                  className="inline-flex items-center justify-center rounded-full border border-white/85 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-foreground"
+                  className="btn-outline-light"
                 >
                   Quiénes somos
                 </Link>
@@ -56,10 +58,10 @@ export default function Home() {
         <div className="container-sar">
           <Reveal>
             <p className="eyebrow mb-10">NUMEROS QUE HABLAN</p>
-            <div className="grid gap-4 md:grid-cols-4">
+            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
               {metrics.map((item, index) => (
                 <Reveal key={item.label} delay={0.08 * index}>
-                  <article className="panel bg-surface">
+                  <article className="panel flex h-full flex-col justify-between bg-surface">
                     <p className="text-3xl font-semibold md:text-4xl">
                       <AnimatedCounter
                         value={item.value}
@@ -159,14 +161,16 @@ export default function Home() {
               Nuestra trayectoria
             </h2>
             <div className="mt-6 overflow-hidden rounded-3xl bg-surface p-1 md:mt-7 md:p-2">
-              <div className="overflow-x-auto">
-                <Image
-                  src="/cronologia2.png"
-                  alt="Cronología de proyectos destacados"
-                  width={1820}
-                  height={500}
-                  className="mx-auto h-auto w-[1320px] max-w-none brightness-90 contrast-125 md:w-full md:max-w-full"
-                />
+              <div className="overflow-hidden">
+                <ParallaxMedia className="mx-auto w-full" intensity={14}>
+                  <Image
+                    src="/cronologia2.png"
+                    alt="Cronología de proyectos destacados"
+                    width={1820}
+                    height={500}
+                    className="mx-auto h-auto w-full brightness-90 contrast-125"
+                  />
+                </ParallaxMedia>
               </div>
             </div>
             <div className="mt-6 md:mt-7">

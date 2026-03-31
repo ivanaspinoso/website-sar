@@ -33,31 +33,23 @@ export default function ContactoPage() {
           </Reveal>
 
           <Reveal className="panel">
-            <form className="space-y-4">
-              <input
-                type="text"
-                name="nombre"
-                placeholder="Nombre y apellido"
-                className="input-premium"
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Correo electronico"
-                className="input-premium"
-              />
-              <input
-                type="tel"
-                name="telefono"
-                placeholder="Telefono"
-                className="input-premium"
-              />
-              <textarea
-                name="mensaje"
-                rows={5}
-                placeholder="Contanos sobre tu consulta"
-                className="input-premium"
-              />
+            <form className="space-y-6">
+              <div className="space-y-2">
+                <label htmlFor="nombre" className="label-premium">Nombre y apellido</label>
+                <input id="nombre" type="text" name="nombre" className="input-premium" />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="email" className="label-premium">Correo electronico</label>
+                <input id="email" type="email" name="email" className="input-premium" />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="telefono" className="label-premium">Telefono</label>
+                <input id="telefono" type="tel" name="telefono" className="input-premium" />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="mensaje" className="label-premium">Mensaje</label>
+                <textarea id="mensaje" name="mensaje" rows={5} className="input-premium resize-none" />
+              </div>
               <button type="submit" className="btn-primary w-full sm:w-auto">
                 Enviar consulta
               </button>

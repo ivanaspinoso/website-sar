@@ -58,6 +58,12 @@ export default async function ProyectoDetallePage(props: { params: Params }) {
         <div className="absolute inset-0 bg-gradient-to-b from-brand/45 via-brand/20 to-brand/55" />
         <div className="container-sar relative flex min-h-[68svh] items-end pb-10 pt-32 sm:min-h-[72svh] sm:pb-14 sm:pt-36">
           <Reveal className="max-w-3xl text-white">
+            <Link
+              href="/proyectos"
+              className="inline-flex items-center gap-2 rounded-full border border-white/45 bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm transition hover:bg-white/20"
+            >
+              Volver a proyectos
+            </Link>
             {content.hero_tag ? <p className="eyebrow !text-white/80">{content.hero_tag}</p> : null}
             <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-5xl md:text-6xl">{project.titulo}</h1>
          

@@ -93,15 +93,7 @@ export function SiteHeader() {
 
               <nav className="grid gap-x-12 gap-y-10 md:grid-cols-2">
                 <div className="space-y-5">
-                  <Link
-                    href="/proyectos"
-                    onClick={() => setOpen(false)}
-                    className={`block text-3xl leading-none font-semibold md:text-4xl ${
-                      isActivePath("/proyectos") ? "text-brand" : "text-foreground"
-                    }`}
-                  >
-                    Proyectos
-                  </Link>
+                 
                   <div className="space-y-2">
                     {navItems.map((item) => (
                       <Link

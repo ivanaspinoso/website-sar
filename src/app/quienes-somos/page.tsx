@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
-  title: "Quiénes somos",
+  title: "SAR - Desarrollo inmobiliario",
   description:
     "Conocé la historia, misión y equipo detrás de SAR Inversiones & Desarrollos, empresa con más de 20 años en el mercado inmobiliario argentino.",
 };
@@ -117,3 +117,4 @@ export default function QuienesSomosPage() {
     </div>
   );
 }
+

@@ -6,7 +6,7 @@ import { Reveal } from "@/components/reveal";
 import { ParallaxMedia } from "@/components/parallax-media";
 
 export const metadata: Metadata = {
-  title: "Inicio",
+  title: "SAR - Desarrollo inmobiliario",
   description:
     "Proyectos inmobiliarios en Argentina con enfoque integral: tierra, desarrollo, comercialización y postventa.",
 };

@@ -12,10 +12,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: {
-    default: "SAR Desarrollos Inmobiliarios",
-    template: "%s | SAR Desarrollos",
-  },
+  title: "SAR - Desarrollo inmobiliario",
   description:
     "Desarrolladora inmobiliaria en Argentina especializada en gestión integral de proyectos rentables y funcionales.",
   icons: {

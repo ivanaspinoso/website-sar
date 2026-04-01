@@ -7,9 +7,10 @@ type AnimatedCounterProps = {
   value: number;
   suffix?: string;
   prefix?: string;
+  className?: string;
 };
 
-export function AnimatedCounter({ value, suffix = "", prefix = "" }: AnimatedCounterProps) {
+export function AnimatedCounter({ value, suffix = "", prefix = "", className }: AnimatedCounterProps) {
   const ref = useRef<HTMLSpanElement | null>(null);
   const isInView = useInView(ref, { once: true, amount: 0.8 });
   const [count, setCount] = useState(0);
@@ -30,7 +31,7 @@ export function AnimatedCounter({ value, suffix = "", prefix = "" }: AnimatedCou
   }, [isInView, value]);
 
   return (
-    <span ref={ref}>
+    <span ref={ref} className={className}>
       {prefix}
       {count.toLocaleString("es-AR")}
       {suffix}

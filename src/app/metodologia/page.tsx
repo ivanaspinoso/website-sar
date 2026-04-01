@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
@@ -49,32 +48,27 @@ export default function MetodologiaPage() {
 
   return (
     <div className="section-white">
-      <section className="section-padding section-surface">
-        <div className="container-sar">
-          <Reveal className="max-w-4xl space-y-5">
-            <div className="overflow-hidden rounded-3xl border border-brand/10">
-              <Image
-                src="/testimonio.jpg"
-                alt="Profesional revisando plano de obra en etapa de desarrollo"
-                width={1920}
-                height={1280}
-                className="h-[340px] w-full object-cover md:h-[430px]"
-              />
-            </div>
-            <h1 className="text-4xl font-semibold tracking-tight md:text-6xl">
-              Nuestra metodología de trabajo
-            </h1>
-            <p className="text-lg leading-relaxed text-muted">
-              Un proceso ejecutado con precisión en cada etapa.
-            </p>
-          </Reveal>
+      <section className="relative -mt-24">
+        <div className="relative min-h-[64svh] overflow-hidden">
+          <div className="absolute inset-0 bg-[url('/12.%20Honorio%20Pueyrredon%201850%20(1).jpg')] bg-cover bg-center" />
+          <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(10,13,34,0.62),rgba(38,39,110,0.46))]" />
+          <div className="container-sar relative mt-24 flex min-h-[calc(64svh-6rem)] items-end">
+            <Reveal className="max-w-4xl space-y-5 py-16 text-white md:py-20">
+              <h1 className="text-4xl font-semibold tracking-tight md:text-6xl">
+                Nuestra metodología de trabajo
+              </h1>
+              <p className="text-lg leading-relaxed text-white/90">
+                Un proceso ejecutado con precisión en cada etapa.
+              </p>
+            </Reveal>
+          </div>
         </div>
       </section>
 
       <section className="section-padding section-white">
         <div className="container-sar">
-          <Reveal className="max-w-5xl">
-            <p className="leading-relaxed text-muted">
+          <Reveal className="mx-auto max-w-6xl bg-gradient-to-b from-white to-surface p-8 text-center shadow-[0_24px_60px_-45px_rgba(38,39,110,0.4)] md:p-12">
+            <p className="mx-auto max-w-5xl text-xl leading-relaxed text-foreground md:text-[2.05rem] md:leading-[1.32]">
               Nuestra metodología abarca todo el proceso de desarrollo de un
               emprendimiento: desde la adquisición de la tierra y la definición
               del proyecto, la contratación de profesionales, la construcción y
@@ -99,10 +93,10 @@ export default function MetodologiaPage() {
               <Reveal
                 key={number}
                 delay={idx * 0.05}
-                className="panel relative overflow-hidden bg-white"
+                className="panel relative overflow-hidden border-brand/15 bg-white"
               >
                 <div className="grid gap-4 md:grid-cols-[90px_1fr] md:gap-6">
-                  <p className="text-xl font-semibold text-muted md:pt-1">
+                  <p className="text-xl font-semibold text-brand/55 md:pt-1">
                     {number}
                   </p>
                   <div>

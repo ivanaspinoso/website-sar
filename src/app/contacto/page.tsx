@@ -9,12 +9,13 @@ export const metadata: Metadata = {
 export default function ContactoPage() {
   return (
     <div className="section-white">
-      <section className="relative -mt-20">
+      <section className="relative -mt-24">
         <div className="relative min-h-[62svh] overflow-hidden">
           <div className="absolute inset-0 bg-[url('/contacto.jpg')] bg-cover bg-center" />
-          <div className="absolute inset-0 bg-brand/55" />
-          <div className="container-sar relative mt-20 flex min-h-[calc(62svh-5rem)] items-center">
+          <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(38,39,110,0.82),rgba(38,39,110,0.56))]" />
+          <div className="container-sar relative mt-24 flex min-h-[calc(62svh-6rem)] items-center">
             <Reveal className="max-w-3xl space-y-5 py-16 text-white md:py-24">
+              <p className="eyebrow text-white/85">Contacto</p>
               <h1 className="text-4xl font-semibold tracking-tight md:text-6xl">
                 Contactanos
               </h1>
@@ -27,9 +28,12 @@ export default function ContactoPage() {
         </div>
       </section>
 
-      <section id="formulario" className="section-padding section-surface">
+      <section id="formulario" className="section-padding section-surface relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute left-12 top-10 h-56 w-56 rounded-full bg-brand/10 blur-3xl" />
+        </div>
         <div className="container-sar grid gap-8 md:grid-cols-[1.35fr_1fr]">
-          <Reveal className="panel">
+          <Reveal className="panel relative border-brand/15 bg-white">
             <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
               Formulario de contacto
             </h2>
@@ -102,7 +106,7 @@ export default function ContactoPage() {
             </form>
           </Reveal>
 
-          <Reveal className="panel space-y-4">
+          <Reveal className="panel space-y-4 border-brand/15 bg-gradient-to-b from-white to-surface">
             <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
               Datos de contacto
             </h2>

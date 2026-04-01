@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/reveal";
+import { ProjectCardImage } from "@/components/project-card-image";
 import { buildProjectSlug, getPublicProjects } from "@/lib/proyectos";
 
 export const dynamic = "force-dynamic";
@@ -42,16 +42,17 @@ export default async function ProyectosPage() {
                 className="group block"
               >
                 <div className="relative aspect-[4/4.4] overflow-hidden">
-                  <Image
-                    src={project.imagen_url || "/heroHome.jpg"}
+                  <ProjectCardImage
+                    src={project.imagen_url}
                     alt={project.titulo}
-                    width={900}
-                    height={1125}
                     className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]"
                   />
                 </div>
                 <div className="pt-4">
-                  <h2 className="text-2xl font-medium tracking-tight text-foreground sm:text-3xl md:text-4xl">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-muted">
+                    {project.anio || "-"}
+                  </p>
+                  <h2 className="text-[1.65rem] font-thin leading-tight tracking-normal text-foreground/85 sm:text-[1.85rem] md:text-[2rem]">
                     {project.titulo}
                   </h2>
                 </div>

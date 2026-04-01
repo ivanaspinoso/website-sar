@@ -8,6 +8,7 @@ export type ProyectoPublico = {
   categoria: string | null;
   imagen_url: string | null;
   descripcion: string | null;
+  created_at?: string | null;
 };
 
 export type ProyectoDetalleContenido = {
@@ -30,7 +31,7 @@ export type ProyectoDetalleContenido = {
   descripcion_markdown?: string;
 };
 
-const PROJECT_SELECT = "id,titulo,direccion,anio,categoria,imagen_url,descripcion";
+const PROJECT_SELECT = "id,titulo,direccion,anio,categoria,imagen_url,descripcion,created_at";
 
 function normalizeEnv(value: string | undefined) {
   if (!value) return "";
@@ -51,6 +52,32 @@ export function buildProjectSlug(project: ProyectoPublico) {
   return `${safeTitle}-${project.id.slice(0, 8)}`;
 }
 
+function parseProjectDate(value: string | null | undefined) {
+  if (!value) return null;
+  const normalized = value.trim();
+  if (!normalized) return null;
+
+  // Admite "YYYY", "YYYY-MM" o "YYYY-MM-DD" y lo vuelve comparable.
+  const parsed = Date.parse(
+    /^\d{4}$/.test(normalized) ? `${normalized}-12-31` : normalized,
+  );
+  return Number.isNaN(parsed) ? null : parsed;
+}
+
+export function sortProjectsNewestFirst<T extends { anio: string | null; created_at?: string | null }>(
+  projects: T[],
+) {
+  return [...projects].sort((a, b) => {
+    const aDate = parseProjectDate(a.anio) ?? parseProjectDate(a.created_at);
+    const bDate = parseProjectDate(b.anio) ?? parseProjectDate(b.created_at);
+
+    if (aDate === null && bDate === null) return 0;
+    if (aDate === null) return 1;
+    if (bDate === null) return -1;
+    return bDate - aDate;
+  });
+}
+
 export async function getPublicProjects() {
   const supabaseUrl = normalizeEnv(process.env.NEXT_PUBLIC_SUPABASE_URL ?? process.env.SUPABASE_URL);
   const supabaseAnonKey = normalizeEnv(
@@ -69,7 +96,7 @@ export async function getPublicProjects() {
     return [];
   }
 
-  return (data ?? []) as ProyectoPublico[];
+  return sortProjectsNewestFirst((data ?? []) as ProyectoPublico[]);
 }
 
 export function parseProjectContent(value: string | null): ProyectoDetalleContenido {

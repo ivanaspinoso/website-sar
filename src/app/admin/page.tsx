@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { SUPABASE_ENV_ERROR, supabase } from "@/lib/supabase";
-import { buildProjectSlug, parseProjectContent } from "@/lib/proyectos";
+import { buildProjectSlug, parseProjectContent, sortProjectsNewestFirst } from "@/lib/proyectos";
 
 type Proyecto = {
   id: string;
@@ -40,7 +40,7 @@ export default function AdminPage() {
       return;
     }
 
-    setItems((data as Proyecto[]) ?? []);
+    setItems(sortProjectsNewestFirst((data as Proyecto[]) ?? []));
   }
 
   useEffect(() => {

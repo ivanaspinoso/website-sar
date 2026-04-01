@@ -53,11 +53,11 @@ export default function MetodologiaPage() {
           <div className="absolute inset-0 bg-[url('/12.%20Honorio%20Pueyrredon%201850%20(1).jpg')] bg-cover bg-center" />
           <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(10,13,34,0.62),rgba(38,39,110,0.46))]" />
           <div className="container-sar relative mt-24 flex min-h-[calc(64svh-6rem)] items-end">
-            <Reveal className="max-w-4xl space-y-5 py-16 text-white md:py-20">
-              <h1 className="text-4xl font-semibold tracking-tight md:text-6xl">
+            <Reveal className="max-w-4xl space-y-5 py-12 text-white sm:py-16 md:py-20">
+              <h1 className="text-3xl font-semibold tracking-tight sm:text-5xl md:text-6xl">
                 Nuestra metodología de trabajo
               </h1>
-              <p className="text-lg leading-relaxed text-white/90">
+              <p className="text-base leading-relaxed text-white/90 sm:text-lg">
                 Un proceso ejecutado con precisión en cada etapa.
               </p>
             </Reveal>
@@ -67,8 +67,8 @@ export default function MetodologiaPage() {
 
       <section className="section-padding section-white">
         <div className="container-sar">
-          <Reveal className="mx-auto max-w-6xl bg-gradient-to-b from-white to-surface p-8 text-center shadow-[0_24px_60px_-45px_rgba(38,39,110,0.4)] md:p-12">
-            <p className="mx-auto max-w-5xl text-xl leading-relaxed text-foreground md:text-[2.05rem] md:leading-[1.32]">
+          <Reveal className="mx-auto max-w-6xl bg-gradient-to-b from-white to-surface p-5 text-center shadow-[0_24px_60px_-45px_rgba(38,39,110,0.4)] sm:p-8 md:p-12">
+            <p className="mx-auto max-w-5xl text-lg leading-relaxed text-foreground sm:text-xl md:text-[2.05rem] md:leading-[1.32]">
               Nuestra metodología abarca todo el proceso de desarrollo de un
               emprendimiento: desde la adquisición de la tierra y la definición
               del proyecto, la contratación de profesionales, la construcción y
@@ -84,7 +84,7 @@ export default function MetodologiaPage() {
         <div className="container-sar">
           <Reveal>
             <p className="eyebrow">ETAPAS DEL PROCESO</p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
               Timeline de trabajo paso a paso
             </h2>
           </Reveal>
@@ -100,7 +100,7 @@ export default function MetodologiaPage() {
                     {number}
                   </p>
                   <div>
-                    <h2 className="text-2xl font-semibold">{title}</h2>
+                    <h2 className="text-xl font-semibold sm:text-2xl">{title}</h2>
                     <p className="mt-2 text-muted">{text}</p>
                   </div>
                 </div>

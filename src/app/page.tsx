@@ -28,8 +28,8 @@ export default function Home() {
           </ParallaxMedia>
           <div className="absolute inset-0 bg-gradient-to-b from-brand/58 via-brand/24 to-brand/44" />
           <div className="container-sar relative mt-24 flex min-h-[calc(100svh-6rem)] items-center justify-center">
-            <Reveal className="max-w-5xl space-y-5 p-6 text-center text-white md:p-9">
-              <h1 className="text-balance text-2xl leading-[1.08] font-semibold [text-shadow:0_4px_18px_rgba(0,0,0,0.65)] md:text-4xl lg:text-5xl">
+            <Reveal className="max-w-5xl space-y-5 p-4 text-center text-white sm:p-6 md:p-9">
+              <h1 className="text-balance text-[1.85rem] leading-[1.08] font-semibold [text-shadow:0_4px_18px_rgba(0,0,0,0.65)] sm:text-4xl lg:text-5xl">
                 TRANSFORMAMOS TERRENOS EN PROYECTOS INMOBILIARIOS RENTABLES Y FUNCIONALES
               </h1>
               <p className="mx-auto max-w-2xl text-sm font-semibold leading-relaxed text-white/95 [text-shadow:0_2px_10px_rgba(0,0,0,0.58)] md:text-base">
@@ -38,13 +38,13 @@ export default function Home() {
               <div className="flex flex-col items-center justify-center gap-3 pt-3 sm:flex-row">
                 <Link
                   href="#proyectos"
-                  className="btn-light"
+                  className="btn-light w-full sm:w-auto"
                 >
                   Conocé nuestros proyectos
                 </Link>
                 <Link
                   href="#nosotros"
-                  className="btn-outline-light"
+                  className="btn-outline-light w-full sm:w-auto"
                 >
                   Quiénes somos
                 </Link>
@@ -62,7 +62,7 @@ export default function Home() {
         <div className="container-sar">
           <Reveal className="relative">
             <p className="eyebrow mb-4">Métricas</p>
-            <h2 className="mb-10 max-w-3xl text-3xl font-semibold tracking-tight md:text-5xl">
+            <h2 className="mb-10 max-w-3xl text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
             Números que hablan
             </h2>
             <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -93,7 +93,7 @@ export default function Home() {
         <div className="container-sar">
           <Reveal className="grid gap-10 md:grid-cols-2 md:items-center">
             <div
-              className="h-[360px] rounded-3xl bg-cover bg-center shadow-[0_30px_80px_-45px_rgba(38,39,110,0.55)]"
+              className="h-[280px] rounded-3xl bg-cover bg-center shadow-[0_30px_80px_-45px_rgba(38,39,110,0.55)] sm:h-[330px] md:h-[360px]"
               style={{
                 backgroundImage:
                   "url('/12.%20Honorio%20Pueyrredon%201850%20(1).jpg')",
@@ -101,7 +101,7 @@ export default function Home() {
             />
             <div className="space-y-5">
               <p className="eyebrow">Compañía</p>
-              <h2 className="text-3xl font-semibold tracking-tight md:text-5xl">
+              <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
                 Cada proyecto, una respuesta al entorno.
               </h2>
               <p className="leading-relaxed text-muted">
@@ -110,7 +110,7 @@ export default function Home() {
                 que ser único. Desarrollamos emprendimientos de arquitectura moderna que
                 generan valor en su entorno y rentabilidad sostenida.
               </p>
-              <Link href="/quienes-somos" className="btn-primary">
+              <Link href="/quienes-somos" className="btn-primary w-full sm:w-auto">
                 Conocenos más
               </Link>
             </div>
@@ -122,7 +122,7 @@ export default function Home() {
         <div className="container-sar">
           <Reveal>
             <p className="eyebrow">Servicios</p>
-            <h2 className="max-w-3xl text-3xl font-semibold tracking-tight md:text-5xl">
+            <h2 className="max-w-3xl text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
               Gestión integral del desarrollo inmobiliario
             </h2>
             <div className="mt-10 grid gap-5 md:grid-cols-2">
@@ -158,7 +158,7 @@ export default function Home() {
               </Reveal>
             </div>
             <div className="mt-10">
-              <Link href="/servicios" className="btn-outline">
+              <Link href="/servicios" className="btn-outline w-full sm:w-auto">
                 Ver servicios
               </Link>
             </div>
@@ -170,7 +170,7 @@ export default function Home() {
         <div className="container-sar">
           <Reveal>
             <p className="eyebrow">PORTFOLIO</p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-5xl">
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
               Nuestra trayectoria
             </h2>
             <p className="mt-3 max-w-2xl text-muted">
@@ -190,7 +190,7 @@ export default function Home() {
               </div>
             </div>
             <div className="mt-6 md:mt-7">
-              <Link href="/proyectos" className="btn-primary">
+              <Link href="/proyectos" className="btn-primary w-full sm:w-auto">
                 Ver todos los proyectos
               </Link>
             </div>
@@ -204,10 +204,10 @@ export default function Home() {
         <div className="container-sar relative section-padding">
           <Reveal
             delay={0.12}
-            className="panel mx-auto max-w-4xl rounded-3xl border-white/35 bg-white/95 p-10 shadow-[0_34px_100px_-60px_rgba(0,0,0,0.8)] transition-transform duration-300 hover:-translate-y-1 md:p-14"
+            className="panel mx-auto max-w-4xl rounded-3xl border-white/35 bg-white/95 p-6 shadow-[0_34px_100px_-60px_rgba(0,0,0,0.8)] transition-transform duration-300 hover:-translate-y-1 sm:p-8 md:p-14"
           >
             <p className="eyebrow">Contacto</p>
-            <h2 className="max-w-3xl text-3xl font-semibold tracking-tight md:text-5xl">
+            <h2 className="max-w-3xl text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
               ¿Buscás un Desarrollo dónde invertir?
             </h2>
             <p className="mt-4 max-w-2xl text-muted">
@@ -215,7 +215,7 @@ export default function Home() {
               el mercado.
             </p>
             <div className="mt-8">
-              <Link href="/contacto#formulario" className="btn-primary">
+              <Link href="/contacto#formulario" className="btn-primary w-full sm:w-auto">
                 Contactanos
               </Link>
             </div>

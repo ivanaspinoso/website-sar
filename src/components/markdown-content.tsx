@@ -37,7 +37,7 @@ export function MarkdownContent({ content, className }: MarkdownContentProps) {
 
         if (line.startsWith("### ")) {
           return (
-            <h4 key={`h3-${index}`} className="mt-2 text-2xl font-semibold">
+            <h4 key={`h3-${index}`} className="mt-2 text-xl font-semibold sm:text-2xl">
               {parseInline(line.slice(4), `h3-${index}`)}
             </h4>
           );
@@ -45,7 +45,7 @@ export function MarkdownContent({ content, className }: MarkdownContentProps) {
 
         if (line.startsWith("## ")) {
           return (
-            <h3 key={`h2-${index}`} className="mt-3 text-3xl font-semibold">
+            <h3 key={`h2-${index}`} className="mt-3 text-2xl font-semibold sm:text-3xl">
               {parseInline(line.slice(3), `h2-${index}`)}
             </h3>
           );
@@ -53,14 +53,14 @@ export function MarkdownContent({ content, className }: MarkdownContentProps) {
 
         if (line.startsWith("# ")) {
           return (
-            <h2 key={`h1-${index}`} className="mt-4 text-4xl font-semibold tracking-tight">
+            <h2 key={`h1-${index}`} className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
               {parseInline(line.slice(2), `h1-${index}`)}
             </h2>
           );
         }
 
         return (
-          <p key={`p-${index}`} className="text-lg leading-relaxed text-foreground/95">
+          <p key={`p-${index}`} className="text-base leading-relaxed text-foreground/95 sm:text-lg">
             {parseInline(line, `p-${index}`)}
           </p>
         );

@@ -34,11 +34,11 @@ export default function QuienesSomosPage() {
           <div className="absolute inset-0 bg-[url('/testimonio.jpg')] bg-cover bg-center" />
           <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(10,13,34,0.62),rgba(38,39,110,0.45))]" />
           <div className="container-sar relative mt-24 flex min-h-[calc(64svh-6rem)] items-end">
-            <Reveal className="max-w-4xl space-y-5 py-16 text-white md:py-20">
-              <h1 className="max-w-5xl text-4xl font-semibold tracking-tight md:text-6xl">
+            <Reveal className="max-w-4xl space-y-5 py-12 text-white sm:py-16 md:py-20">
+              <h1 className="max-w-5xl text-3xl font-semibold tracking-tight sm:text-5xl md:text-6xl">
                 Más de 20 años construyendo proyectos únicos
               </h1>
-              <p className="text-lg leading-relaxed text-white/90">
+              <p className="text-base leading-relaxed text-white/90 sm:text-lg">
                 SAR Inversiones & Desarrollos | Desarrolladora inmobiliaria en Argentina
               </p>
             </Reveal>
@@ -48,9 +48,9 @@ export default function QuienesSomosPage() {
 
       <section className="section-padding section-white">
         <div className="container-sar">
-          <Reveal className="max-w-4xl space-y-5 border-l border-brand/20 pl-6 md:pl-10">
+          <Reveal className="max-w-4xl space-y-5 border-l border-brand/20 pl-4 sm:pl-6 md:pl-10">
             <p className="eyebrow">NUESTRA HISTORIA</p>
-            <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
+            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
               Una pregunta que dio forma a todo
             </h2>
             <p className="leading-relaxed text-muted">
@@ -75,7 +75,7 @@ export default function QuienesSomosPage() {
         <div className="container-sar">
           <Reveal className="max-w-5xl space-y-5">
             <p className="eyebrow">NUESTRA MISIÓN</p>
-            <h2 className="text-3xl font-semibold tracking-tight md:text-5xl">
+            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
               Transformamos terrenos en proyectos inmobiliarios rentables y funcionales.
             </h2>
             <p className="max-w-4xl leading-relaxed text-muted">
@@ -92,7 +92,7 @@ export default function QuienesSomosPage() {
         <div className="container-sar">
           <Reveal>
             <p className="eyebrow">LO QUE DEFINE A SAR DESARROLLOS</p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
               Nuestros valores
             </h2>
           </Reveal>

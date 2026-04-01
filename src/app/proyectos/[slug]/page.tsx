@@ -53,13 +53,13 @@ export default async function ProyectoDetallePage(props: { params: Params }) {
 
   return (
     <div className="section-white">
-      <section className="relative -mt-24 min-h-[72svh] overflow-hidden">
+      <section className="relative -mt-24 min-h-[68svh] overflow-hidden sm:min-h-[72svh]">
         <Image src={heroImage} alt={project.titulo} fill priority className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-brand/45 via-brand/20 to-brand/55" />
-        <div className="container-sar relative flex min-h-[72svh] items-end pb-14 pt-36">
+        <div className="container-sar relative flex min-h-[68svh] items-end pb-10 pt-32 sm:min-h-[72svh] sm:pb-14 sm:pt-36">
           <Reveal className="max-w-3xl text-white">
             {content.hero_tag ? <p className="eyebrow !text-white/80">{content.hero_tag}</p> : null}
-            <h1 className="mt-3 text-4xl font-semibold tracking-tight md:text-6xl">{project.titulo}</h1>
+            <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-5xl md:text-6xl">{project.titulo}</h1>
             <p className="mt-4 text-sm text-white/90 md:text-base">
               {project.direccion || "Ubicacion privilegiada en la Ciudad de Buenos Aires"}
             </p>
@@ -80,7 +80,7 @@ export default async function ProyectoDetallePage(props: { params: Params }) {
                 <h2 className="text-3xl font-semibold tracking-tight md:text-5xl">{content.intro_titulo}</h2>
               ) : null}
             </Reveal>
-            <Reveal delay={0.08} className="space-y-7 text-lg leading-relaxed text-foreground/95">
+            <Reveal delay={0.08} className="space-y-7 text-base leading-relaxed text-foreground/95 sm:text-lg">
               {content.intro_parrafo_1 ? <p>{content.intro_parrafo_1}</p> : null}
               {content.intro_parrafo_2 ? <p>{content.intro_parrafo_2}</p> : null}
             </Reveal>
@@ -109,7 +109,7 @@ export default async function ProyectoDetallePage(props: { params: Params }) {
                     alt={`Imagen ${index + 1} de ${project.titulo}`}
                     width={1600}
                     height={1000}
-                    className="h-[300px] w-full object-cover md:h-[460px]"
+                    className="h-[240px] w-full object-cover sm:h-[300px] md:h-[460px]"
                   />
                 </div>
               ))}
@@ -126,7 +126,7 @@ export default async function ProyectoDetallePage(props: { params: Params }) {
                 <h2 className="text-3xl font-semibold tracking-tight md:text-5xl">{content.arquitectura_titulo}</h2>
               ) : null}
             </Reveal>
-            <Reveal delay={0.08} className="space-y-7 text-lg leading-relaxed text-foreground/95">
+            <Reveal delay={0.08} className="space-y-7 text-base leading-relaxed text-foreground/95 sm:text-lg">
               {content.arquitectura_parrafo_1 ? <p>{content.arquitectura_parrafo_1}</p> : null}
               {content.arquitectura_parrafo_2 ? <p>{content.arquitectura_parrafo_2}</p> : null}
             </Reveal>
@@ -165,7 +165,7 @@ export default async function ProyectoDetallePage(props: { params: Params }) {
           <div className="container-sar">
             {content.vivir_titulo ? (
               <Reveal>
-                <h2 className="text-4xl font-semibold tracking-tight md:text-6xl">{content.vivir_titulo}</h2>
+                <h2 className="text-3xl font-semibold tracking-tight sm:text-5xl md:text-6xl">{content.vivir_titulo}</h2>
               </Reveal>
             ) : null}
             {content.unidades ? (
@@ -181,7 +181,7 @@ export default async function ProyectoDetallePage(props: { params: Params }) {
                   alt={`Imagen de unidades de ${project.titulo}`}
                   width={1600}
                   height={1100}
-                  className="h-[420px] w-full object-cover md:h-[620px]"
+                  className="h-[280px] w-full object-cover sm:h-[420px] md:h-[620px]"
                 />
               </Reveal>
             ) : null}

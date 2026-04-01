@@ -41,11 +41,11 @@ export default function ServiciosPage() {
           <div className="absolute inset-0 bg-[url('/pexels-ivan-s-8962801%20(1).jpg')] bg-cover bg-center" />
           <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(10,13,34,0.64),rgba(38,39,110,0.46))]" />
           <div className="container-sar relative mt-24 flex min-h-[calc(64svh-6rem)] items-end">
-            <Reveal className="max-w-4xl space-y-5 py-16 text-white md:py-20">
-              <h1 className="text-4xl font-semibold tracking-tight md:text-6xl">
+            <Reveal className="max-w-4xl space-y-5 py-12 text-white sm:py-16 md:py-20">
+              <h1 className="text-3xl font-semibold tracking-tight sm:text-5xl md:text-6xl">
                 Gestión inmobiliaria de punta a punta
               </h1>
-              <p className="text-lg leading-relaxed text-white/90">
+              <p className="text-base leading-relaxed text-white/90 sm:text-lg">
                 Nos dedicamos íntegramente a la ejecución y administración de
                 emprendimientos inmobiliarios.
               </p>
@@ -56,7 +56,7 @@ export default function ServiciosPage() {
 
       <section className="section-padding section-white">
         <div className="container-sar">
-          <Reveal className="max-w-5xl space-y-5 border-l border-brand/20 pl-6 md:pl-10">
+          <Reveal className="max-w-5xl space-y-5 border-l border-brand/20 pl-4 sm:pl-6 md:pl-10">
             <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
               Management de Real Estate
             </h2>
@@ -75,7 +75,7 @@ export default function ServiciosPage() {
               {includes.map((item) => (
                 <li
                   key={item}
-                  className="grid items-center gap-4 px-5 py-5 md:grid-cols-[72px_1fr_auto] md:px-8"
+                  className="grid items-center gap-4 px-4 py-5 sm:px-5 md:grid-cols-[72px_1fr_auto] md:px-8"
                 >
                   <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-brand/20 text-brand/75">
                     <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
@@ -95,7 +95,7 @@ export default function ServiciosPage() {
       <section className="section-padding section-surface">
         <div className="container-sar">
           <Reveal>
-            <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
+            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
               ¿Para quién desarrollamos?
             </h2>
           </Reveal>
@@ -121,12 +121,12 @@ export default function ServiciosPage() {
                 alt="Equipo revisando plano arquitectónico durante la etapa de postventa"
                 width={1920}
                 height={1280}
-                className="h-[340px] w-full object-cover md:h-[430px]"
+                className="h-[280px] w-full object-cover sm:h-[340px] md:h-[430px]"
               />
             </div>
             <div className="space-y-5">
               <p className="eyebrow">POST VENTA</p>
-              <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
+              <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
                 La entrega no marca el fin del compromiso.
               </h2>
               <p className="leading-relaxed text-muted">

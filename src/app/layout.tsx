@@ -40,7 +40,7 @@ export default function RootLayout({
         <main className="pt-24">{children}</main>
         <footer className="bg-brand py-14 text-white">
           <div className="container-sar">
-            <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-4">
+            <div className="grid gap-10 sm:grid-cols-2 xl:grid-cols-4">
               <div>
                 <Link href="/" className="inline-flex items-center" aria-label="Inicio - SAR Desarrollos">
                   <Image
@@ -87,7 +87,7 @@ export default function RootLayout({
                 <p className="text-sm font-semibold uppercase tracking-[0.12em] text-white/90">
                   Contacto
                 </p>
-                <div className="mt-4 space-y-2 text-sm text-white/85">
+                <div className="mt-4 space-y-2 break-words text-sm text-white/85">
                   <a
                     href="mailto:recepcion@sardesarrollos.com.ar"
                     className="block transition-colors hover:text-white"

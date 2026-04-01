@@ -14,11 +14,11 @@ export default function ContactoPage() {
           <div className="absolute inset-0 bg-[url('/contacto.jpg')] bg-cover bg-center" />
           <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(10,13,34,0.62),rgba(38,39,110,0.46))]" />
           <div className="container-sar relative mt-24 flex min-h-[calc(64svh-6rem)] items-end">
-            <Reveal className="max-w-4xl space-y-5 py-16 text-white md:py-20">
-              <h1 className="text-4xl font-semibold tracking-tight md:text-6xl">
+            <Reveal className="max-w-4xl space-y-5 py-12 text-white sm:py-16 md:py-20">
+              <h1 className="text-3xl font-semibold tracking-tight sm:text-5xl md:text-6xl">
                 Contactanos
               </h1>
-              <p className="max-w-3xl text-lg leading-relaxed text-white/90">
+              <p className="max-w-3xl text-base leading-relaxed text-white/90 sm:text-lg">
                 Para conocer nuestros proyectos en curso o explorar oportunidades
                 de inversion.
               </p>
@@ -109,7 +109,7 @@ export default function ContactoPage() {
             <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
               Datos de contacto
             </h2>
-            <div className="grid gap-3 text-muted md:grid-cols-2">
+            <div className="grid gap-3 break-words text-muted md:grid-cols-2">
               <p>🌐 www.sardesarrollos.com.ar</p>
               <p>📧 recepcion@sardesarrollos.com.ar</p>
               <p>📞 11 4331-582</p>

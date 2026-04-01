@@ -21,8 +21,8 @@ export default async function ProyectosPage() {
           <div className="absolute inset-0 bg-[url('/heroHome.jpg')] bg-cover bg-center" />
           <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(10,13,34,0.62),rgba(38,39,110,0.46))]" />
           <div className="container-sar relative mt-24 flex min-h-[calc(64svh-6rem)] items-end">
-            <Reveal className="max-w-4xl space-y-5 py-16 text-white md:py-20">
-              <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
+            <Reveal className="max-w-4xl space-y-5 py-12 text-white sm:py-16 md:py-20">
+              <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
                 Trayectoria construida con vision y precision
               </h1>
               <p className="max-w-3xl text-white/90">
@@ -34,7 +34,7 @@ export default async function ProyectosPage() {
       </section>
 
       <section className="section-padding section-white">
-        <div className="container-sar grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="container-sar grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {projects.map((project, idx) => (
             <Reveal key={project.id} delay={idx * 0.07}>
               <Link
@@ -51,7 +51,7 @@ export default async function ProyectosPage() {
                   />
                 </div>
                 <div className="pt-4">
-                  <h2 className="text-3xl font-medium tracking-tight text-foreground md:text-4xl">
+                  <h2 className="text-2xl font-medium tracking-tight text-foreground sm:text-3xl md:text-4xl">
                     {project.titulo}
                   </h2>
                 </div>

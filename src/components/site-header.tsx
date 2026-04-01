@@ -74,7 +74,7 @@ export function SiteHeader() {
             className="absolute inset-0 bg-black/40 backdrop-blur-[2.5px]"
             onClick={() => setOpen(false)}
           />
-          <aside className="absolute top-0 right-0 h-screen w-full overflow-y-auto bg-white shadow-2xl md:w-1/2">
+          <aside className="absolute top-0 right-0 h-screen w-full overflow-y-auto bg-white shadow-2xl sm:w-[90vw] md:w-[74vw] lg:w-[620px]">
             <div className="px-6 py-6 sm:px-10 sm:py-7">
               <div className="mb-8 flex items-center justify-between">
                 <p className="text-base leading-none text-muted sm:text-lg">Menu</p>
@@ -129,7 +129,7 @@ export function SiteHeader() {
                   >
                     Contacto
                   </Link>
-                  <a href="tel:+541143315582" className="block text-3xl leading-none font-semibold text-foreground md:text-4xl">
+                  <a href="tel:+541143315582" className="block whitespace-nowrap text-3xl leading-none font-semibold text-foreground md:text-4xl">
                     11 4331-582
                   </a>
                 </div>

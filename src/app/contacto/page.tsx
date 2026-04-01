@@ -10,16 +10,15 @@ export default function ContactoPage() {
   return (
     <div className="section-white">
       <section className="relative -mt-24">
-        <div className="relative min-h-[62svh] overflow-hidden">
+        <div className="relative min-h-[64svh] overflow-hidden">
           <div className="absolute inset-0 bg-[url('/contacto.jpg')] bg-cover bg-center" />
-          <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(38,39,110,0.82),rgba(38,39,110,0.56))]" />
-          <div className="container-sar relative mt-24 flex min-h-[calc(62svh-6rem)] items-center">
-            <Reveal className="max-w-3xl space-y-5 py-16 text-white md:py-24">
-              <p className="eyebrow text-white/85">Contacto</p>
+          <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(10,13,34,0.62),rgba(38,39,110,0.46))]" />
+          <div className="container-sar relative mt-24 flex min-h-[calc(64svh-6rem)] items-end">
+            <Reveal className="max-w-4xl space-y-5 py-16 text-white md:py-20">
               <h1 className="text-4xl font-semibold tracking-tight md:text-6xl">
                 Contactanos
               </h1>
-              <p className="max-w-2xl text-base text-white/90 md:text-lg">
+              <p className="max-w-3xl text-lg leading-relaxed text-white/90">
                 Para conocer nuestros proyectos en curso o explorar oportunidades
                 de inversion.
               </p>
@@ -32,7 +31,7 @@ export default function ContactoPage() {
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute left-12 top-10 h-56 w-56 rounded-full bg-brand/10 blur-3xl" />
         </div>
-        <div className="container-sar grid gap-8 md:grid-cols-[1.35fr_1fr]">
+        <div className="container-sar space-y-6">
           <Reveal className="panel relative border-brand/15 bg-white">
             <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
               Formulario de contacto
@@ -106,17 +105,17 @@ export default function ContactoPage() {
             </form>
           </Reveal>
 
-          <Reveal className="panel space-y-4 border-brand/15 bg-gradient-to-b from-white to-surface">
+          <Reveal className="panel mx-auto w-full max-w-5xl space-y-4 border-brand/15 bg-gradient-to-b from-white to-surface">
             <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
               Datos de contacto
             </h2>
-            <p className="text-muted">🌐 www.sardesarrollos.com.ar</p>
-            <p className="text-muted">📧 recepcion@sardesarrollos.com.ar</p>
-            <p className="text-muted">📞 11 4331-582</p>
-            <p className="text-muted">
-              💼 LinkedIn: Sar Inversiones &amp; Desarrollos
-            </p>
-            <p className="text-muted">📸 Instagram: @Sardesarrollos</p>
+            <div className="grid gap-3 text-muted md:grid-cols-2">
+              <p>🌐 www.sardesarrollos.com.ar</p>
+              <p>📧 recepcion@sardesarrollos.com.ar</p>
+              <p>📞 11 4331-582</p>
+              <p>💼 LinkedIn: Sar Inversiones &amp; Desarrollos</p>
+              <p>📸 Instagram: @Sardesarrollos</p>
+            </div>
           </Reveal>
         </div>
       </section>

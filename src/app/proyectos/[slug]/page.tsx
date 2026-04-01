@@ -60,9 +60,7 @@ export default async function ProyectoDetallePage(props: { params: Params }) {
           <Reveal className="max-w-3xl text-white">
             {content.hero_tag ? <p className="eyebrow !text-white/80">{content.hero_tag}</p> : null}
             <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-5xl md:text-6xl">{project.titulo}</h1>
-            <p className="mt-4 text-sm text-white/90 md:text-base">
-              {project.direccion || "Ubicacion privilegiada en la Ciudad de Buenos Aires"}
-            </p>
+         
             {content.estado ? (
               <p className="mt-4 inline-flex rounded-full border border-white/35 bg-white/20 px-4 py-1.5 text-sm font-medium text-white backdrop-blur-sm">
                 {content.estado}

@@ -25,14 +25,14 @@ export async function generateMetadata(props: { params: Params }): Promise<Metad
 
   if (!project) {
     return {
-      title: "Proyecto no encontrado",
+      title: "SAR - Desarrollo inmobiliario",
     };
   }
 
   const content = parseProjectContent(project.descripcion);
 
   return {
-    title: project.titulo,
+    title: "SAR - Desarrollo inmobiliario",
     description:
       content.resumen ?? project.direccion ?? "Detalle de proyecto",
   };

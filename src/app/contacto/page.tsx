@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
-  title: "Contacto",
+  title: "SAR - Desarrollo inmobiliario",
   description: "Contacto SAR Desarrollos Inmobiliarios.",
 };
 
@@ -122,3 +122,4 @@ export default function ContactoPage() {
     </div>
   );
 }
+

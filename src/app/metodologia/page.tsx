@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
-  title: "Metodología",
+  title: "SAR - Desarrollo inmobiliario",
   description:
     "Nuestra metodología de trabajo en desarrollo inmobiliario: un proceso ejecutado con precisión en cada etapa.",
 };
@@ -112,3 +112,4 @@ export default function MetodologiaPage() {
     </div>
   );
 }
+

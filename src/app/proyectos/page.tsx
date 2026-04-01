@@ -7,7 +7,7 @@ import { buildProjectSlug, getPublicProjects } from "@/lib/proyectos";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Proyectos",
+  title: "SAR - Desarrollo inmobiliario",
   description: "Galería de proyectos inmobiliarios finalizados y en curso de SAR en Argentina.",
 };
 
@@ -68,3 +68,4 @@ export default async function ProyectosPage() {
     </div>
   );
 }
+

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
-  title: "Servicios",
+  title: "SAR - Desarrollo inmobiliario",
   description:
     "Gestión inmobiliaria de punta a punta: management de real estate, tipos de proyecto y servicio de postventa de SAR.",
 };
@@ -142,3 +142,4 @@ export default function ServiciosPage() {
     </div>
   );
 }
+

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const navItems = [
@@ -15,6 +16,12 @@ const navItems = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActivePath = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -38,14 +45,11 @@ export function SiteHeader() {
         </Link>
 
         <button
-          className="inline-flex h-11 items-center gap-2 rounded-md px-2"
+          className="inline-flex h-11 items-center rounded-md"
           onClick={() => setOpen((prev) => !prev)}
           aria-label={open ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={open}
         >
-          <span className="text-lg leading-none font-medium text-white">
-            {open ? "Cerrar" : "Menu"}
-          </span>
           <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/80 text-white">
             {open ? (
               <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true">
@@ -92,7 +96,9 @@ export function SiteHeader() {
                   <Link
                     href="/proyectos"
                     onClick={() => setOpen(false)}
-                    className="block text-3xl leading-none font-semibold text-foreground md:text-4xl"
+                    className={`block text-3xl leading-none font-semibold md:text-4xl ${
+                      isActivePath("/proyectos") ? "text-brand" : "text-foreground"
+                    }`}
                   >
                     Proyectos
                   </Link>
@@ -102,9 +108,11 @@ export function SiteHeader() {
                         key={item.href}
                         href={item.href}
                         onClick={() => setOpen(false)}
-                        className="flex items-center gap-3 py-0.5 text-lg leading-none text-foreground/95 transition hover:text-brand md:text-lg"
+                        className={`flex items-center gap-3 py-0.5 text-lg leading-none transition md:text-lg ${
+                          isActivePath(item.href) ? "font-semibold text-brand" : "text-foreground/95 hover:text-brand"
+                        }`}
                       >
-                        <span className="text-muted">↗</span>
+                        <span className={isActivePath(item.href) ? "text-brand/70" : "text-muted"}>↗</span>
                         {item.label}
                       </Link>
                     ))}
@@ -115,17 +123,15 @@ export function SiteHeader() {
                   <Link
                     href="/contacto"
                     onClick={() => setOpen(false)}
-                    className="block text-3xl leading-none font-semibold text-foreground md:text-4xl"
+                    className={`block text-3xl leading-none font-semibold md:text-4xl ${
+                      isActivePath("/contacto") ? "text-brand" : "text-foreground"
+                    }`}
                   >
                     Contacto
                   </Link>
-                  <Link
-                    href="/quienes-somos"
-                    onClick={() => setOpen(false)}
-                    className="block text-3xl leading-none font-semibold text-foreground md:text-4xl"
-                  >
-                    Quiénes Somos
-                  </Link>
+                  <a href="tel:+541143315582" className="block text-3xl leading-none font-semibold text-foreground md:text-4xl">
+                    11 4331-582
+                  </a>
                 </div>
               </nav>
             </div>

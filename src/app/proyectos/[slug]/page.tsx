@@ -72,6 +72,20 @@ export default async function ProyectoDetallePage(props: { params: Params }) {
         </div>
       </section>
 
+      <section className="section-white py-6 md:py-8">
+        <div className="container-sar">
+          <Reveal>
+            <Image
+              src={heroImage}
+              alt={`Vista completa de ${project.titulo}`}
+              width={2000}
+              height={2600}
+              className="mx-auto h-auto max-h-[58svh] w-auto max-w-full object-contain"
+            />
+          </Reveal>
+        </div>
+      </section>
+
       {content.intro_titulo || content.intro_parrafo_1 || content.intro_parrafo_2 ? (
         <section className="section-padding section-white">
           <div className="container-sar grid gap-12 md:grid-cols-2 md:items-start">

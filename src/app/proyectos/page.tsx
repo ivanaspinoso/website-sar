@@ -56,7 +56,7 @@ export default async function ProyectosPage() {
                       </div>
                       <div className="pt-4">
                         <p className="text-xs font-semibold uppercase tracking-wide text-muted">{project.anio || "-"}</p>
-                        <h3 className="text-[1.65rem] font-thin leading-tight tracking-normal text-foreground/85 sm:text-[1.85rem] md:text-[2rem]">
+                        <h3 className="text-[1rem] font-thin leading-tight tracking-normal text-foreground sm:text-[1.2rem] md:text-[1.3rem]">
                           {project.titulo}
                         </h3>
                       </div>
@@ -86,7 +86,7 @@ export default async function ProyectosPage() {
                       </div>
                       <div className="pt-4">
                         <p className="text-xs font-semibold uppercase tracking-wide text-muted">{project.anio || "-"}</p>
-                        <h3 className="text-[1.65rem] font-thin leading-tight tracking-normal text-foreground/85 sm:text-[1.85rem] md:text-[2rem]">
+                        <h3 className="text-[1.40rem] font-thin leading-tight tracking-normal text-foreground sm:text-[1.5rem] md:text-[1.4rem]">
                           {project.titulo}
                         </h3>
                       </div>

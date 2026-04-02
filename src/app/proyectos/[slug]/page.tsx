@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Reveal } from "@/components/reveal";
 import { MarkdownContent } from "@/components/markdown-content";
+import { ZoomableImage } from "@/components/zoomable-image";
 import { getPublicProjects, parseProjectContent } from "@/lib/proyectos";
 
 type Params = Promise<{ slug: string }>;
@@ -50,11 +51,12 @@ export default async function ProyectoDetallePage(props: { params: Params }) {
   const content = parseProjectContent(project.descripcion);
   const gallery = content.galeria?.filter(Boolean) ?? [];
   const amenities = content.amenities?.filter(Boolean) ?? [];
+  const isRemoteImage = (src: string) => src.startsWith("http://") || src.startsWith("https://");
 
   return (
     <div className="section-white">
       <section className="relative -mt-24 min-h-[68svh] overflow-hidden sm:min-h-[72svh]">
-        <Image src={heroImage} alt={project.titulo} fill priority className="object-cover" />
+        <Image src={heroImage} alt={project.titulo} fill priority className="object-cover" unoptimized={isRemoteImage(heroImage)} />
         <div className="absolute inset-0 bg-gradient-to-b from-brand/45 via-brand/20 to-brand/55" />
         <div className="container-sar relative flex min-h-[68svh] items-end pb-10 pt-32 sm:min-h-[72svh] sm:pb-14 sm:pt-36">
           <Reveal className="max-w-3xl text-white">
@@ -79,12 +81,13 @@ export default async function ProyectoDetallePage(props: { params: Params }) {
       <section className="section-white py-6 md:py-8">
         <div className="container-sar">
           <Reveal>
-            <Image
+            <ZoomableImage
               src={heroImage}
               alt={`Vista completa de ${project.titulo}`}
               width={2000}
               height={2600}
               className="mx-auto h-auto max-h-[58svh] w-auto max-w-full object-contain"
+              unoptimized={isRemoteImage(heroImage)}
             />
           </Reveal>
         </div>
@@ -128,6 +131,7 @@ export default async function ProyectoDetallePage(props: { params: Params }) {
                     width={1600}
                     height={1000}
                     className="h-[240px] w-full object-cover sm:h-[300px] md:h-[460px]"
+                    unoptimized={isRemoteImage(imageUrl)}
                   />
                 </div>
               ))}
@@ -172,6 +176,7 @@ export default async function ProyectoDetallePage(props: { params: Params }) {
                 width={1800}
                 height={900}
                 className="h-[320px] w-full object-cover md:h-[520px]"
+                unoptimized={isRemoteImage(content.mapa_url)}
               />
             </Reveal>
           </div>
@@ -200,6 +205,7 @@ export default async function ProyectoDetallePage(props: { params: Params }) {
                   width={1600}
                   height={1100}
                   className="h-[280px] w-full object-cover sm:h-[420px] md:h-[620px]"
+                  unoptimized={isRemoteImage(gallery[2])}
                 />
               </Reveal>
             ) : null}

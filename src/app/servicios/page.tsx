@@ -45,7 +45,6 @@ export default function ServiciosPage() {
       loop
       muted
       playsInline
-      preload="none"
     >
       <source src="/membrillar.mp4" type="video/mp4" />
     </video>

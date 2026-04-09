@@ -46,7 +46,7 @@ export default function ServiciosPage() {
       muted
       playsInline
     >
-      <source src="/membrillar.mp4" type="video/mp4" />
+      <source src="/honorario.mp4" type="video/mp4" />
     </video>
 
     

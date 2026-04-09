@@ -38,7 +38,6 @@ export default function QuienesSomosPage() {
       loop
       muted
       playsInline
-      poster="/testimonio.jpg"
     >
       <source src="/honorario.mp4" type="video/mp4" />
     </video>

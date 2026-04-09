@@ -46,7 +46,6 @@ export default function ServiciosPage() {
       muted
       playsInline
       preload="none"
-      poster="/testimonio.jpg"
     >
       <source src="/membrillar.mp4" type="video/mp4" />
     </video>

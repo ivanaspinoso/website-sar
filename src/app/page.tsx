@@ -4,6 +4,9 @@ import type { Metadata } from "next";
 import { AnimatedCounter } from "@/components/animated-counter";
 import { Reveal } from "@/components/reveal";
 import { ParallaxMedia } from "@/components/parallax-media";
+import { getPageContent } from "@/lib/site-content";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "SAR - Desarrollo inmobiliario",
@@ -11,13 +14,8 @@ export const metadata: Metadata = {
     "Proyectos inmobiliarios en Argentina con enfoque integral: tierra, desarrollo, comercialización y postventa.",
 };
 
-export default function Home() {
-  const metrics = [
-    { value: 50000, suffix: " m2", label: "de obra construida" },
-    { value: 500, prefix: "+", label: "unidades funcionales entregadas" },
-    { value: 20, suffix: " años", prefix: "+", label: "de trayectoria en el mercado" },
-    { value: 20, prefix: "+", label: "proyectos desarrollados en Argentina" },
-  ];
+export default async function Home() {
+  const c = await getPageContent("home");
 
   return (
     <>
@@ -30,22 +28,16 @@ export default function Home() {
           <div className="container-sar relative mt-24 flex min-h-[calc(100svh-6rem)] items-center justify-center">
             <Reveal className="max-w-5xl space-y-5 p-4 text-center text-white sm:p-6 md:p-9">
               <h1 className="text-balance text-[1.85rem] leading-[1.08] font-semibold [text-shadow:0_4px_18px_rgba(0,0,0,0.65)] sm:text-4xl lg:text-5xl">
-                TRANSFORMAMOS TERRENOS EN PROYECTOS INMOBILIARIOS RENTABLES Y FUNCIONALES
+                {c.hero_titulo}
               </h1>
               <p className="mx-auto max-w-2xl text-sm font-semibold leading-relaxed text-white/95 [text-shadow:0_2px_10px_rgba(0,0,0,0.58)] md:text-base">
-                Desarrollo inmobiliario integral en Argentina desde 2004.
+                {c.hero_subtitulo}
               </p>
               <div className="flex flex-col items-center justify-center gap-3 pt-3 sm:flex-row">
-                <Link
-                  href="#proyectos"
-                  className="btn-light w-full sm:w-auto"
-                >
+                <Link href="#proyectos" className="btn-light w-full sm:w-auto">
                   Conocé nuestros proyectos
                 </Link>
-                <Link
-                  href="#nosotros"
-                  className="btn-outline-light w-full sm:w-auto"
-                >
+                <Link href="#nosotros" className="btn-outline-light w-full sm:w-auto">
                   Quiénes somos
                 </Link>
               </div>
@@ -63,10 +55,10 @@ export default function Home() {
           <Reveal className="relative">
             <p className="eyebrow mb-4">Métricas</p>
             <h2 className="mb-10 max-w-3xl text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
-            Números que hablan
+              Números que hablan
             </h2>
             <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-              {metrics.map((item, index) => (
+              {c.metricas.map((item, index) => (
                 <Reveal key={item.label} delay={0.08 * index}>
                   <article className="panel grid h-full grid-rows-[auto_auto_1fr] border-brand/15 bg-gradient-to-b from-white to-surface">
                     <span className="mb-6 block h-px w-14 bg-brand/30" />
@@ -94,22 +86,14 @@ export default function Home() {
           <Reveal className="grid gap-10 md:grid-cols-2 md:items-center">
             <div
               className="h-[280px] rounded-3xl bg-cover bg-center shadow-[0_30px_80px_-45px_rgba(38,39,110,0.55)] sm:h-[330px] md:h-[360px]"
-              style={{
-                backgroundImage:
-                  "url('/12.%20Honorio%20Pueyrredon%201850%20(1).jpg')",
-              }}
+              style={{ backgroundImage: "url('/12.%20Honorio%20Pueyrredon%201850%20(1).jpg')" }}
             />
             <div className="space-y-5">
               <p className="eyebrow">Compañía</p>
               <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
-                Cada proyecto, una respuesta al entorno.
+                {c.compannia_titulo}
               </h2>
-              <p className="leading-relaxed text-muted">
-                Detrás de SAR Inversiones hay más de dos décadas de experiencia en el
-                mercado inmobiliario argentino y una convicción: que cada proyecto tiene
-                que ser único. Desarrollamos emprendimientos de arquitectura moderna que
-                generan valor en su entorno y rentabilidad sostenida.
-              </p>
+              <p className="leading-relaxed text-muted">{c.compannia_texto}</p>
               <Link href="/quienes-somos" className="btn-primary w-full sm:w-auto">
                 Conocenos más
               </Link>
@@ -123,7 +107,7 @@ export default function Home() {
           <Reveal>
             <p className="eyebrow">Servicios</p>
             <h2 className="max-w-3xl text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
-              Gestión integral del desarrollo inmobiliario
+              {c.servicios_titulo}
             </h2>
             <div className="mt-10 grid gap-5 md:grid-cols-2">
               <Reveal delay={0.08}>
@@ -134,11 +118,8 @@ export default function Home() {
                       <path d="M9 12h6M9 9h6" />
                     </svg>
                   </span>
-                  <h3 className="mt-4 text-xl font-semibold md:text-2xl">Management de Real Estate</h3>
-                  <p className="mt-3 text-muted">
-                    Gestionamos todo el ciclo del emprendimiento: análisis, viabilidad,
-                    ejecución y comercialización.
-                  </p>
+                  <h3 className="mt-4 text-xl font-semibold md:text-2xl">{c.servicios_card1_titulo}</h3>
+                  <p className="mt-3 text-muted">{c.servicios_card1_texto}</p>
                 </article>
               </Reveal>
               <Reveal delay={0.16}>
@@ -149,11 +130,8 @@ export default function Home() {
                       <path d="m15 16 2 2 3-4" />
                     </svg>
                   </span>
-                  <h3 className="mt-4 text-xl font-semibold md:text-2xl">Post Venta</h3>
-                  <p className="mt-3 text-muted">
-                    Nuestro compromiso no termina con la entrega. Acompañamos a cada cliente
-                    en la etapa de postventa.
-                  </p>
+                  <h3 className="mt-4 text-xl font-semibold md:text-2xl">{c.servicios_card2_titulo}</h3>
+                  <p className="mt-3 text-muted">{c.servicios_card2_texto}</p>
                 </article>
               </Reveal>
             </div>
@@ -171,11 +149,9 @@ export default function Home() {
           <Reveal>
             <p className="eyebrow">PORTFOLIO</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
-              Nuestra trayectoria
+              {c.portfolio_titulo}
             </h2>
-            <p className="mt-3 max-w-2xl text-muted">
-              Un recorrido de hitos que sintetiza escala, continuidad y visión de largo plazo.
-            </p>
+            <p className="mt-3 max-w-2xl text-muted">{c.portfolio_texto}</p>
             <div className="mt-6 overflow-hidden rounded-3xl border border-brand/10 bg-surface p-1 shadow-[0_30px_70px_-50px_rgba(38,39,110,0.5)] md:mt-7 md:p-2">
               <div className="overflow-hidden">
                 <ParallaxMedia className="mx-auto w-full" intensity={14}>
@@ -208,12 +184,9 @@ export default function Home() {
           >
             <p className="eyebrow">Contacto</p>
             <h2 className="max-w-3xl text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
-              ¿Buscás un Desarrollo dónde invertir?
+              {c.contacto_cta_titulo}
             </h2>
-            <p className="mt-4 max-w-2xl text-muted">
-              Explorá oportunidades de desarrollo con un equipo con más de 20 años en
-              el mercado.
-            </p>
+            <p className="mt-4 max-w-2xl text-muted">{c.contacto_cta_texto}</p>
             <div className="mt-8">
               <Link href="/contacto#formulario" className="btn-primary w-full sm:w-auto">
                 Contactanos
@@ -222,7 +195,6 @@ export default function Home() {
           </Reveal>
         </div>
       </section>
-
     </>
   );
 }

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Reveal } from "@/components/reveal";
 import { ProjectCardImage } from "@/components/project-card-image";
 import { buildProjectSlug, getPublicProjects } from "@/lib/proyectos";
+import { getPageContent } from "@/lib/site-content";
 
 export const dynamic = "force-dynamic";
 
@@ -12,7 +13,11 @@ export const metadata: Metadata = {
 };
 
 export default async function ProyectosPage() {
-  const projects = await getPublicProjects();
+  const [projects, c] = await Promise.all([
+    getPublicProjects(),
+    getPageContent("proyectos"),
+  ]);
+
   const featuredProjects = projects.slice(0, 3);
   const remainingProjects = projects.slice(3);
 
@@ -24,12 +29,8 @@ export default async function ProyectosPage() {
           <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(10,13,34,0.62),rgba(38,39,110,0.46))]" />
           <div className="container-sar relative mt-24 flex min-h-[calc(64svh-6rem)] items-end">
             <Reveal className="max-w-4xl space-y-5 py-12 text-white sm:py-16 md:py-20">
-              <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
-                Trayectoria construida con vision y precision
-              </h1>
-              <p className="max-w-3xl text-white/90">
-                Selección de desarrollos realizados y en curso, concebidos para generar valor urbano y rentabilidad sostenida.
-              </p>
+              <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">{c.hero_titulo}</h1>
+              <p className="max-w-3xl text-white/90">{c.hero_subtitulo}</p>
             </Reveal>
           </div>
         </div>
@@ -107,4 +108,3 @@ export default async function ProyectosPage() {
     </div>
   );
 }
-

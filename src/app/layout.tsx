@@ -4,6 +4,7 @@ import "./globals.css";
 import Link from "next/link";
 import Image from "next/image";
 import { SiteHeader } from "@/components/site-header";
+import { getPageContent } from "@/lib/site-content";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -22,22 +23,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
+  const g = await getPageContent("global");
+
   return (
-    <html
-      lang="es"
-      className={`${poppins.variable} h-full antialiased`}
-    >
+    <html lang="es" className={`${poppins.variable} h-full antialiased`}>
       <body suppressHydrationWarning className="min-h-full bg-background text-foreground">
         <SiteHeader />
         <main className="pt-24">{children}</main>
         <footer className="bg-brand py-14 text-white">
           <div className="container-sar">
             <div className="grid gap-10 sm:grid-cols-2 xl:grid-cols-4">
+
               <div>
                 <Link href="/" className="inline-flex items-center" aria-label="Inicio - SAR Desarrollos">
                   <Image
@@ -49,69 +48,47 @@ export default function RootLayout({
                   />
                 </Link>
                 <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/80">
-                  Desarrollamos proyectos inmobiliarios con visión estratégica y valor
-                  sostenido.
+                  {g.footer_descripcion}
                 </p>
               </div>
 
               <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.12em] text-white/90">
-                  Navegacion
-                </p>
+                <p className="text-sm font-semibold uppercase tracking-[0.12em] text-white/90">Navegacion</p>
                 <nav className="mt-4 flex flex-col gap-2 text-sm text-white/85">
-                  <Link href="/" className="transition-colors hover:text-white">
-                    Inicio
-                  </Link>
-                  <Link href="/quienes-somos" className="transition-colors hover:text-white">
-                    Quienes Somos
-                  </Link>
-                  <Link href="/servicios" className="transition-colors hover:text-white">
-                    Servicios
-                  </Link>
-                  <Link href="/metodologia" className="transition-colors hover:text-white">
-                    Metodologia
-                  </Link>
-                  <Link href="/proyectos" className="transition-colors hover:text-white">
-                    Proyectos
-                  </Link>
-                  <Link href="/contacto" className="transition-colors hover:text-white">
-                    Contacto
-                  </Link>
+                  <Link href="/" className="transition-colors hover:text-white">Inicio</Link>
+                  <Link href="/quienes-somos" className="transition-colors hover:text-white">Quienes Somos</Link>
+                  <Link href="/servicios" className="transition-colors hover:text-white">Servicios</Link>
+                  <Link href="/metodologia" className="transition-colors hover:text-white">Metodologia</Link>
+                  <Link href="/proyectos" className="transition-colors hover:text-white">Proyectos</Link>
+                  <Link href="/contacto" className="transition-colors hover:text-white">Contacto</Link>
                 </nav>
               </div>
 
               <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.12em] text-white/90">
-                  Contacto
-                </p>
+                <p className="text-sm font-semibold uppercase tracking-[0.12em] text-white/90">Contacto</p>
                 <div className="mt-4 space-y-2 break-words text-sm text-white/85">
-                  <a
-                    href="mailto:recepcion@sardesarrollos.com.ar"
-                    className="block transition-colors hover:text-white"
-                  >
-                    recepcion@sardesarrollos.com.ar
+                  <a href={`mailto:${g.contacto_email}`} className="block transition-colors hover:text-white">
+                    {g.contacto_email}
                   </a>
-                  <a href="tel:+541143315582" className="block transition-colors hover:text-white">
-                    11 4331-582
+                  <a href={`tel:${g.contacto_telefono.replace(/\s/g, "")}`} className="block transition-colors hover:text-white">
+                    {g.contacto_telefono}
                   </a>
                   <a
-                    href="https://www.sardesarrollos.com.ar"
+                    href={g.contacto_web.startsWith("http") ? g.contacto_web : `https://${g.contacto_web}`}
                     target="_blank"
                     rel="noreferrer"
                     className="block transition-colors hover:text-white"
                   >
-                    www.sardesarrollos.com.ar
+                    {g.contacto_web}
                   </a>
                 </div>
               </div>
 
               <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.12em] text-white/90">
-                  Redes
-                </p>
+                <p className="text-sm font-semibold uppercase tracking-[0.12em] text-white/90">Redes</p>
                 <div className="mt-4 flex items-center gap-4">
                   <a
-                    href="https://www.linkedin.com/company/sar-inversiones-desarrollos/"
+                    href={g.redes_linkedin_url}
                     target="_blank"
                     rel="noreferrer"
                     className="rounded-full border border-white/35 p-2 text-white transition-colors hover:border-white hover:bg-white/10"
@@ -122,7 +99,7 @@ export default function RootLayout({
                     </svg>
                   </a>
                   <a
-                    href="https://www.instagram.com/sardesarrollos/"
+                    href={g.redes_instagram_url}
                     target="_blank"
                     rel="noreferrer"
                     className="rounded-full border border-white/35 p-2 text-white transition-colors hover:border-white hover:bg-white/10"
@@ -135,9 +112,10 @@ export default function RootLayout({
                     </svg>
                   </a>
                 </div>
-                <p className="mt-4 text-sm text-white/85">LinkedIn: Sar Inversiones & Desarrollos</p>
-                <p className="mt-1 text-sm text-white/85">Instagram: @Sardesarrollos</p>
+                <p className="mt-4 text-sm text-white/85">{g.redes_linkedin_label}</p>
+                <p className="mt-1 text-sm text-white/85">{g.redes_instagram_label}</p>
               </div>
+
             </div>
           </div>
         </footer>

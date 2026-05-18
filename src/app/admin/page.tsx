@@ -134,9 +134,12 @@ export default function AdminPage() {
               Crea, edita y publica el contenido completo de cada proyecto desde un solo lugar.
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <Link href="/admin/proyectos/nuevo" className="rounded-md bg-foreground px-4 py-2 text-sm font-medium text-white">
               Crear proyecto
+            </Link>
+            <Link href="/admin/contenido" className="rounded-md border border-brand/20 bg-white px-4 py-2 text-sm font-medium">
+              Editar contenido del sitio
             </Link>
             <button
               onClick={handleLogout}

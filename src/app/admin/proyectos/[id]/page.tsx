@@ -215,8 +215,28 @@ export default function AdminProyectoFormPage() {
               value={form.imagen_url}
               onChange={(event) => setForm((prev) => ({ ...prev, imagen_url: event.target.value }))}
             />
+
+            {form.imagen_url ? (
+              <div className="rounded-md border border-brand/15 bg-surface p-3">
+                <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted">Imagen actual</p>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={form.imagen_url}
+                  alt="Vista previa de la imagen del proyecto"
+                  className="max-h-64 w-full rounded-md object-contain"
+                />
+                <button
+                  type="button"
+                  onClick={() => setForm((prev) => ({ ...prev, imagen_url: "" }))}
+                  className="mt-3 rounded-md border border-red-300 px-3 py-2 text-sm font-medium text-red-700 hover:bg-red-50"
+                >
+                  Quitar imagen
+                </button>
+              </div>
+            ) : null}
+
             <label className="rounded-md border border-brand/20 px-3 py-2 text-sm text-muted">
-              Subir imagen principal desde computadora
+              {form.imagen_url ? "Reemplazar imagen (subir otra)" : "Subir imagen principal desde computadora"}
               <input type="file" accept="image/*" className="mt-2 block w-full" onChange={handleHeroImageUpload} />
               {uploadingHero ? <span className="mt-2 block text-xs">Subiendo...</span> : null}
             </label>

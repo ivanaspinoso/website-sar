@@ -183,14 +183,47 @@ export default async function Home() {
             className="panel mx-auto max-w-4xl rounded-3xl border-white/35 bg-white/95 p-6 shadow-[0_34px_100px_-60px_rgba(0,0,0,0.8)] transition-transform duration-300 hover:-translate-y-1 sm:p-8 md:p-14"
           >
             <p className="eyebrow">Contacto</p>
-            <h2 className="max-w-3xl text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
-              {c.contacto_cta_titulo}
+            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
+              CONTACTANOS
             </h2>
-            <p className="mt-4 max-w-2xl text-muted">{c.contacto_cta_texto}</p>
-            <div className="mt-8">
-              <Link href="/contacto#formulario" className="btn-primary w-full sm:w-auto">
-                Contactanos
-              </Link>
+            <p className="mt-4 max-w-2xl text-muted">para conocer más sobre nuestros desarrollos.</p>
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+              <a
+                href="mailto:recepcion@sardesarrollos.com.ar"
+                className="inline-flex items-center gap-3 font-medium text-foreground transition hover:text-brand"
+              >
+                <span className="icon-shell shrink-0">
+                  <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden="true">
+                    <path d="M4 6h16v12H4z" />
+                    <path d="m4 7 8 6 8-6" />
+                  </svg>
+                </span>
+                recepcion@sardesarrollos.com.ar
+              </a>
+              <a
+                href="tel:+541143315829"
+                className="inline-flex items-center gap-3 font-medium text-foreground transition hover:text-brand"
+              >
+                <span className="icon-shell shrink-0">
+                  <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden="true">
+                    <path d="M4 5c0 8.3 6.7 15 15 15v-3.5l-4-1.5-2 2a12 12 0 0 1-6-6l2-2L7.5 5H4Z" />
+                  </svg>
+                </span>
+                11 4331-5829
+              </a>
+              <a
+                href="https://wa.me/5491122723212"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-3 font-medium text-foreground transition hover:text-brand"
+              >
+                <span className="icon-shell shrink-0">
+                  <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden="true">
+                    <path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.2 1.2-1.7 1.2-.4 0-1 .1-3.4-.9-2.9-1.2-4.7-4.2-4.9-4.4-.1-.2-1.1-1.5-1.1-2.9 0-1.3.7-2 1-2.3.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.9 1.4 1.9 2.3 1.3 1.1 2.3 1.5 2.6 1.6.2.1.4.1.6-.1l.9-1c.2-.3.4-.2.7-.1l2 1c.3.1.4.2.5.3.1.2.1.9-.1 1.5Z" />
+                  </svg>
+                </span>
+                11 2272-3212
+              </a>
             </div>
           </Reveal>
         </div>

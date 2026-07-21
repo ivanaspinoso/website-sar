@@ -4,6 +4,7 @@ import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { SUPABASE_ENV_ERROR, supabase } from "@/lib/supabase";
+import { storagePathFromPublicUrl } from "@/lib/proyectos";
 
 type Proyecto = {
   id: string;
@@ -32,6 +33,7 @@ export default function AdminProyectoFormPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [form, setForm] = useState<ProyectoForm>(initialForm);
+  const [originalImage, setOriginalImage] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [uploadingHero, setUploadingHero] = useState(false);
 
@@ -79,6 +81,7 @@ export default function AdminProyectoFormPage() {
           anio: item.anio ?? "",
           imagen_url: item.imagen_url ?? "",
         });
+        setOriginalImage(item.imagen_url ?? "");
       }
 
       setLoading(false);
@@ -152,13 +155,21 @@ export default function AdminProyectoFormPage() {
       ? await supabase.from("proyectos").insert(payload)
       : await supabase.from("proyectos").update(payload).eq("id", params.id);
 
-    setSaving(false);
-
     if (response.error) {
+      setSaving(false);
       setErrorMsg(response.error.message);
       return;
     }
 
+    // Si se reemplazo la imagen, borra la anterior del storage (ya persistio la nueva).
+    if (!isCreate && originalImage && originalImage !== payload.imagen_url) {
+      const oldPath = storagePathFromPublicUrl(originalImage, bucketName);
+      if (oldPath) {
+        await supabase.storage.from(bucketName).remove([oldPath]);
+      }
+    }
+
+    setSaving(false);
     router.push("/admin");
   }
 

@@ -189,15 +189,15 @@ export const DEFAULT_CONTACTO: ContactoContent = {
 };
 
 export const DEFAULT_PROYECTOS: ProyectosContent = {
-  hero_titulo: "Trayectoria construida con vision y precision",
+  hero_titulo: "Nuestros Proyectos",
   hero_subtitulo:
-    "Selección de desarrollos realizados y en curso, concebidos para generar valor urbano y rentabilidad sostenida.",
+    "Más de 20 emprendimientos desarrollados en Argentina desde 2004.",
 };
 
 export const DEFAULT_GLOBAL: GlobalContent = {
   footer_descripcion: "Desarrollamos proyectos inmobiliarios con visión estratégica y valor sostenido.",
   contacto_email: "recepcion@sardesarrollos.com.ar",
-  contacto_telefono: "11 4331-582",
+  contacto_telefono: "11 4331-5829",
   contacto_web: "www.sardesarrollos.com.ar",
   redes_linkedin_url: "https://www.linkedin.com/company/sar-inversiones-desarrollos/",
   redes_instagram_url: "https://www.instagram.com/sardesarrollos/",

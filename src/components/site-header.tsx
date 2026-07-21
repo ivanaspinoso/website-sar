@@ -110,21 +110,6 @@ export function SiteHeader() {
                     ))}
                   </div>
                 </div>
-
-                <div className="space-y-8">
-                  <Link
-                    href="/contacto"
-                    onClick={() => setOpen(false)}
-                    className={`block text-3xl leading-none font-semibold md:text-4xl ${
-                      isActivePath("/contacto") ? "text-brand" : "text-foreground"
-                    }`}
-                  >
-                    Contacto
-                  </Link>
-                  <a href="tel:+541143315582" className="block whitespace-nowrap text-3xl leading-none font-semibold text-foreground md:text-4xl">
-                    11 4331-582
-                  </a>
-                </div>
               </nav>
             </div>
           </aside>

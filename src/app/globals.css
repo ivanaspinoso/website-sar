@@ -16,6 +16,9 @@
   --color-brand: var(--brand);
   --font-sans: var(--font-poppins);
   --font-mono: var(--font-poppins);
+  /* +1pt sobre texto de cuerpo (no títulos) */
+  --text-sm: 0.9375rem;
+  --text-base: 1.0625rem;
 }
 
 body {
@@ -30,21 +33,21 @@ body {
 
 p {
   font-weight: 400;
-  font-size: clamp(0.98rem, 0.3vw + 0.9rem, 1.08rem);
+  font-size: clamp(1.05rem, 0.3vw + 0.97rem, 1.15rem);
   line-height: 1.65;
 }
 
 li {
-  font-size: 1.02rem;
+  font-size: 1.09rem;
 }
 
 @media (min-width: 768px) {
   p {
-    font-size: 1.08rem;
+    font-size: 1.15rem;
   }
 
   li {
-    font-size: 1.04rem;
+    font-size: 1.11rem;
   }
 }
 

@@ -99,6 +99,18 @@ export async function getPublicProjects() {
   return sortProjectsNewestFirst((data ?? []) as ProyectoPublico[]);
 }
 
+export function storagePathFromPublicUrl(
+  url: string | null | undefined,
+  bucket: string,
+): string | null {
+  if (!url) return null;
+  const marker = `/storage/v1/object/public/${bucket}/`;
+  const idx = url.indexOf(marker);
+  if (idx === -1) return null;
+  const path = url.slice(idx + marker.length).split("?")[0];
+  return path || null;
+}
+
 export function parseProjectContent(value: string | null): ProyectoDetalleContenido {
   if (!value) return {};
 

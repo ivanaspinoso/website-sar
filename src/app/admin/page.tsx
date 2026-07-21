@@ -4,7 +4,9 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { SUPABASE_ENV_ERROR, supabase } from "@/lib/supabase";
-import { buildProjectSlug, parseProjectContent, sortProjectsNewestFirst } from "@/lib/proyectos";
+import { buildProjectSlug, parseProjectContent, sortProjectsNewestFirst, storagePathFromPublicUrl } from "@/lib/proyectos";
+
+const PROJECTS_BUCKET = process.env.NEXT_PUBLIC_SUPABASE_PROJECTS_BUCKET || "proyectos";
 
 type Proyecto = {
   id: string;
@@ -78,7 +80,7 @@ export default function AdminPage() {
     void init();
   }, [router]);
 
-  async function handleDelete(id: string) {
+  async function handleDelete(item: Proyecto) {
     const confirmDelete = window.confirm("Seguro que queres eliminar este proyecto?");
     if (!confirmDelete) return;
 
@@ -87,11 +89,18 @@ export default function AdminPage() {
       return;
     }
 
-    const { error } = await supabase.from("proyectos").delete().eq("id", id);
+    const { error } = await supabase.from("proyectos").delete().eq("id", item.id);
     if (error) {
       setErrorMsg(error.message);
       return;
     }
+
+    // Limpia la imagen del storage para no dejar archivos huerfanos.
+    const imagePath = storagePathFromPublicUrl(item.imagen_url, PROJECTS_BUCKET);
+    if (imagePath) {
+      await supabase.storage.from(PROJECTS_BUCKET).remove([imagePath]);
+    }
+
     await loadProjects();
   }
 
@@ -200,7 +209,7 @@ export default function AdminPage() {
                   Abrir en web
                 </Link>
                 <button
-                  onClick={() => handleDelete(item.id)}
+                  onClick={() => handleDelete(item)}
                   className="rounded-md border border-red-300 px-3 py-2 text-sm font-medium text-red-700"
                 >
                   Eliminar

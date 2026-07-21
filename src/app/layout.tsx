@@ -113,7 +113,6 @@ export default async function RootLayout({
                   </a>
                 </div>
                 <p className="mt-4 text-sm text-white/85">{g.redes_linkedin_label}</p>
-                <p className="mt-1 text-sm text-white/85">{g.redes_instagram_label}</p>
               </div>
 
             </div>

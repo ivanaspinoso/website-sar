@@ -156,8 +156,8 @@ export default async function Home() {
               <div className="overflow-hidden">
                 <ParallaxMedia className="mx-auto w-full" intensity={14}>
                   <Image
-                    src="/cronologia2.png"
-                    alt="Cronología de proyectos destacados"
+                    src="/Trayectoria.png"
+                    alt="Nuestra trayectoria"
                     width={1820}
                     height={500}
                     className="mx-auto h-auto w-full brightness-90 contrast-125"

@@ -182,7 +182,7 @@ export const DEFAULT_CONTACTO: ContactoContent = {
   hero_titulo: "Contactanos",
   hero_subtitulo: "Para conocer nuestros proyectos en curso o explorar oportunidades de inversion.",
   info_email: "recepcion@sardesarrollos.com.ar",
-  info_telefono: "11 4331-582",
+  info_telefono: "11 4331-5829",
   info_web: "www.sardesarrollos.com.ar",
   info_linkedin: "Sar Inversiones & Desarrollos",
   info_instagram: "@Sardesarrollos",

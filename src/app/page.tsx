@@ -182,7 +182,6 @@ export default async function Home() {
             delay={0.12}
             className="panel mx-auto max-w-4xl rounded-3xl border-white/35 bg-white/95 p-6 shadow-[0_34px_100px_-60px_rgba(0,0,0,0.8)] transition-transform duration-300 hover:-translate-y-1 sm:p-8 md:p-14"
           >
-            <p className="eyebrow">Contacto</p>
             <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
               CONTACTANOS
             </h2>

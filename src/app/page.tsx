@@ -78,7 +78,7 @@ export default async function Home() {
           <Reveal className="grid gap-10 md:grid-cols-2 md:items-center">
             <div
               className="h-[280px] rounded-3xl bg-cover bg-center shadow-[0_30px_80px_-45px_rgba(38,39,110,0.55)] sm:h-[330px] md:h-[360px]"
-              style={{ backgroundImage: "url('/12.%20Honorio%20Pueyrredon%201850%20(1).jpg')" }}
+              style={{ backgroundImage: "url('/nuevaimagen.jpeg')" }}
             />
             <div className="space-y-5">
               <p className="eyebrow">Compañía</p>

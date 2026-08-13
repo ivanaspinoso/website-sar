@@ -7,6 +7,13 @@ import { getPageContent } from "@/lib/site-content";
 
 export const dynamic = "force-dynamic";
 
+// Las fotos son verticales (4:5) y la card es 4:4.4, asi que object-cover recorta
+// arriba y abajo. Por defecto queda centrado; aca se ajusta el anclaje en los
+// proyectos donde ese centrado corta mal (techo cortado, vereda de mas, etc).
+const ENCUADRE_POR_SLUG: Record<string, string> = {
+  "jose-bonifacio-1686-73ff283b": "object-top",
+};
+
 export const metadata: Metadata = {
   title: "SAR - Desarrollo inmobiliario",
   description: "Galería de proyectos inmobiliarios finalizados y en curso de SAR en Argentina.",
@@ -17,9 +24,6 @@ export default async function ProyectosPage() {
     getPublicProjects(),
     getPageContent("proyectos"),
   ]);
-
-  const featuredProjects = projects.slice(0, 3);
-  const remainingProjects = projects.slice(3);
 
   return (
     <div className="section-white">
@@ -38,63 +42,32 @@ export default async function ProyectosPage() {
 
       <section className="section-padding section-white">
         <div className="container-sar space-y-14">
-          {featuredProjects.length > 0 ? (
-            <div className="space-y-5">
-              <div>
-                <p className="eyebrow">Destacados</p>
-                <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">Proyectos destacados</h2>
-              </div>
-              <div className="grid gap-6 md:grid-cols-3">
-                {featuredProjects.map((project, idx) => (
-                  <Reveal key={`featured-${project.id}`} delay={idx * 0.07}>
-                    <Link href={`/proyectos/${buildProjectSlug(project)}`} className="group block">
-                      <div className="relative aspect-[4/4.4] overflow-hidden">
-                        <ProjectCardImage
-                          src={project.imagen_url}
-                          alt={project.titulo}
-                          className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]"
-                        />
-                      </div>
-                      <div className="pt-4">
-                        <p className="text-xs font-semibold uppercase tracking-wide text-muted">{project.anio || "-"}</p>
-                        <h3 className="text-[1rem] font-thin leading-tight tracking-normal text-foreground sm:text-[1.2rem] md:text-[1.3rem]">
-                          {project.titulo}
-                        </h3>
-                      </div>
-                    </Link>
-                  </Reveal>
-                ))}
-              </div>
-            </div>
-          ) : null}
+          {projects.length > 0 ? (
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {projects.map((project, idx) => {
+                const slug = buildProjectSlug(project);
+                const encuadre = ENCUADRE_POR_SLUG[slug] ?? "";
 
-          {remainingProjects.length > 0 ? (
-            <div className="space-y-5">
-              <div>
-                <p className="eyebrow">Todos</p>
-                <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">Todos los proyectos</h2>
-              </div>
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {remainingProjects.map((project, idx) => (
-                  <Reveal key={project.id} delay={idx * 0.07}>
-                    <Link href={`/proyectos/${buildProjectSlug(project)}`} className="group block">
-                      <div className="relative aspect-[4/4.4] overflow-hidden">
-                        <ProjectCardImage
-                          src={project.imagen_url}
-                          alt={project.titulo}
-                          className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]"
-                        />
-                      </div>
-                      <div className="pt-4">
-                        <p className="text-xs font-semibold uppercase tracking-wide text-muted">{project.anio || "-"}</p>
-                        <h3 className="text-[1.40rem] font-thin leading-tight tracking-normal text-foreground sm:text-[1.5rem] md:text-[1.4rem]">
-                          {project.titulo}
-                        </h3>
-                      </div>
-                    </Link>
-                  </Reveal>
-                ))}
-              </div>
+                return (
+                <Reveal key={project.id} delay={idx * 0.07}>
+                  <Link href={`/proyectos/${slug}`} className="group block">
+                    <div className="relative aspect-[4/4.4] overflow-hidden">
+                      <ProjectCardImage
+                        src={project.imagen_url}
+                        alt={project.titulo}
+                        className={`h-full w-full object-cover transition duration-500 group-hover:scale-[1.02] ${encuadre}`}
+                      />
+                    </div>
+                    <div className="pt-4">
+                      <p className="text-xs font-semibold uppercase tracking-wide text-muted">{project.anio || "-"}</p>
+                      <h3 className="text-[1.40rem] font-thin leading-tight tracking-normal text-foreground sm:text-[1.5rem] md:text-[1.4rem]">
+                        {project.titulo}
+                      </h3>
+                    </div>
+                  </Link>
+                </Reveal>
+                );
+              })}
             </div>
           ) : null}
 

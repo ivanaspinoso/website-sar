@@ -22,6 +22,7 @@ export type ProyectoDetalleContenido = {
   arquitectura_parrafo_1?: string;
   arquitectura_parrafo_2?: string;
   vivir_titulo?: string;
+  especificaciones?: string;
   unidades?: string;
   amenities?: string[];
   galeria?: string[];

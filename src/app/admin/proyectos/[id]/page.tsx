@@ -4,26 +4,58 @@ import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { SUPABASE_ENV_ERROR, supabase } from "@/lib/supabase";
-import { storagePathFromPublicUrl } from "@/lib/proyectos";
+import { parseProjectContent, storagePathFromPublicUrl } from "@/lib/proyectos";
+import { getEspecificaciones } from "@/lib/especificaciones";
 
 type Proyecto = {
   id: string;
   titulo: string;
   anio: string | null;
   imagen_url: string | null;
+  descripcion: string | null;
 };
 
 type ProyectoForm = {
   titulo: string;
   anio: string;
   imagen_url: string;
+  especificaciones: string;
 };
 
 const initialForm: ProyectoForm = {
   titulo: "",
   anio: "",
   imagen_url: "",
+  especificaciones: "",
 };
+
+// `descripcion` guarda un JSON con todo el contenido del detalle (intro, galeria,
+// amenities, etc). Aca solo se edita `especificaciones`, asi que hay que devolver
+// el resto intacto. Si lo guardado no es JSON valido se conserva como `resumen`,
+// que es como lo interpreta parseProjectContent al leerlo.
+function mergeEspecificaciones(descripcion: string | null, especificaciones: string) {
+  let contenido: Record<string, unknown> = {};
+
+  const raw = descripcion?.trim();
+  if (raw) {
+    try {
+      const parsed = JSON.parse(raw);
+      contenido =
+        parsed && typeof parsed === "object" && !Array.isArray(parsed)
+          ? (parsed as Record<string, unknown>)
+          : { resumen: raw };
+    } catch {
+      contenido = { resumen: raw };
+    }
+  }
+
+  // Se guarda siempre, aun vacio. La cadena vacia es el modo de decir "este
+  // proyecto no lleva ficha" y evita que el detalle caiga en el valor por
+  // defecto de especificaciones.ts.
+  contenido.especificaciones = especificaciones.trim();
+
+  return JSON.stringify(contenido);
+}
 
 export default function AdminProyectoFormPage() {
   const router = useRouter();
@@ -34,6 +66,7 @@ export default function AdminProyectoFormPage() {
   const [saving, setSaving] = useState(false);
   const [form, setForm] = useState<ProyectoForm>(initialForm);
   const [originalImage, setOriginalImage] = useState("");
+  const [originalDescripcion, setOriginalDescripcion] = useState<string | null>(null);
   const [errorMsg, setErrorMsg] = useState("");
   const [uploadingHero, setUploadingHero] = useState(false);
 
@@ -76,12 +109,18 @@ export default function AdminProyectoFormPage() {
         }
 
         const item = data as Proyecto;
+        const contenido = parseProjectContent(item.descripcion);
+
         setForm({
           titulo: item.titulo ?? "",
           anio: item.anio ?? "",
           imagen_url: item.imagen_url ?? "",
+          // Si el proyecto todavia no tiene la ficha en la base, se precarga la
+          // que esta hardcodeada en especificaciones.ts para poder editarla.
+          especificaciones: getEspecificaciones(item.id, contenido.especificaciones) ?? "",
         });
         setOriginalImage(item.imagen_url ?? "");
+        setOriginalDescripcion(item.descripcion ?? null);
       }
 
       setLoading(false);
@@ -143,6 +182,7 @@ export default function AdminProyectoFormPage() {
       titulo: form.titulo.trim(),
       anio: form.anio.trim(),
       imagen_url: form.imagen_url.trim(),
+      descripcion: mergeEspecificaciones(originalDescripcion, form.especificaciones),
     };
 
     if (!payload.titulo) {
@@ -194,7 +234,7 @@ export default function AdminProyectoFormPage() {
           </Link>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4 rounded-2xl border border-brand/15 bg-white p-5">
+        <form onSubmit={handleSubmit} className="space-y-4 rounded-2xl border border-brand/15 bg-[#eef2ff] p-5">
           <div className="grid gap-3">
             <input
               className="rounded-md border border-brand/20 px-3 py-2"
@@ -240,6 +280,20 @@ export default function AdminProyectoFormPage() {
               <input type="file" accept="image/*" className="mt-2 block w-full" onChange={handleHeroImageUpload} />
               {uploadingHero ? <span className="mt-2 block text-xs">Subiendo...</span> : null}
             </label>
+
+            <div>
+              <textarea
+                className="w-full rounded-md border border-brand/20 px-3 py-2"
+                placeholder="Especificaciones (separadas por coma)"
+                rows={3}
+                value={form.especificaciones}
+                onChange={(event) => setForm((prev) => ({ ...prev, especificaciones: event.target.value }))}
+              />
+              <p className="mt-1 text-xs text-muted">
+                Se muestran en la ficha del proyecto. Cada tramo separado por coma se lista aparte; las comas
+                dentro de parentesis no cortan. Ej: 2.200 m2, 9 pisos, 33 unidades (mono y 2 amb), cocheras.
+              </p>
+            </div>
           </div>
 
           {errorMsg ? <p className="text-sm text-red-600">{errorMsg}</p> : null}

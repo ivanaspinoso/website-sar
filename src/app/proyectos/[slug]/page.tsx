@@ -6,6 +6,7 @@ import { Reveal } from "@/components/reveal";
 import { MarkdownContent } from "@/components/markdown-content";
 import { ZoomableImage } from "@/components/zoomable-image";
 import { getPublicProjects, parseProjectContent } from "@/lib/proyectos";
+import { getEspecificaciones, splitEspecificaciones } from "@/lib/especificaciones";
 
 type Params = Promise<{ slug: string }>;
 
@@ -51,6 +52,8 @@ export default async function ProyectoDetallePage(props: { params: Params }) {
   const content = parseProjectContent(project.descripcion);
   const gallery = content.galeria?.filter(Boolean) ?? [];
   const amenities = content.amenities?.filter(Boolean) ?? [];
+  const especificaciones = getEspecificaciones(project.id, content.especificaciones);
+  const fichaTecnica = especificaciones ? splitEspecificaciones(especificaciones) : [];
   const isRemoteImage = (src: string) => src.startsWith("http://") || src.startsWith("https://");
 
   return (
@@ -92,6 +95,31 @@ export default async function ProyectoDetallePage(props: { params: Params }) {
           </Reveal>
         </div>
       </section>
+
+      {fichaTecnica.length > 0 ? (
+        <section className="section-padding section-white">
+          <div className="container-sar">
+            <Reveal>
+              <p className="eyebrow">ESPECIFICACIONES</p>
+              {project.direccion ? (
+                <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">{project.direccion}</h2>
+              ) : null}
+            </Reveal>
+            <Reveal delay={0.08}>
+              <ul className="mt-8 grid gap-x-10 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
+                {fichaTecnica.map((item) => (
+                  <li
+                    key={item}
+                    className="border-t border-brand/15 pt-4 text-base leading-relaxed text-foreground/90"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+          </div>
+        </section>
+      ) : null}
 
       {content.intro_titulo || content.intro_parrafo_1 || content.intro_parrafo_2 ? (
         <section className="section-padding section-white">

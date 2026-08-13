@@ -148,10 +148,10 @@ export default async function Home() {
               <div className="overflow-hidden">
                 <ParallaxMedia className="mx-auto w-full" intensity={14}>
                   <Image
-                    src="/Trayectoria.png"
+                    src="/Trayectoria 2.png"
                     alt="Nuestra trayectoria"
-                    width={1820}
-                    height={500}
+                    width={1920}
+                    height={1080}
                     className="mx-auto h-auto w-full brightness-90 contrast-125"
                   />
                 </ParallaxMedia>

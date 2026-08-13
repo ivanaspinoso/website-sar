@@ -147,7 +147,7 @@ export default function AdminPage() {
             <Link href="/admin/proyectos/nuevo" className="rounded-md bg-foreground px-4 py-2 text-sm font-medium text-white">
               Crear proyecto
             </Link>
-            <Link href="/admin/contenido" className="rounded-md border border-brand/20 bg-white px-4 py-2 text-sm font-medium">
+            <Link href="/admin/contenido" className="rounded-md border border-brand/20 bg-[#eef2ff] px-4 py-2 text-sm font-medium">
               Editar contenido del sitio
             </Link>
             <button
@@ -160,15 +160,15 @@ export default function AdminPage() {
         </div>
 
         <div className="grid gap-3 sm:grid-cols-3">
-          <article className="rounded-xl border border-brand/15 bg-white p-4">
+          <article className="rounded-xl border border-brand/15 bg-[#eef2ff] p-4">
             <p className="text-xs uppercase tracking-wide text-muted">Total proyectos</p>
             <p className="mt-2 text-2xl font-semibold">{items.length}</p>
           </article>
-          <article className="rounded-xl border border-brand/15 bg-white p-4">
+          <article className="rounded-xl border border-brand/15 bg-[#eef2ff] p-4">
             <p className="text-xs uppercase tracking-wide text-muted">Destacados</p>
             <p className="mt-2 text-2xl font-semibold">{items.filter((item) => item.destacado).length}</p>
           </article>
-          <article className="rounded-xl border border-brand/15 bg-white p-4">
+          <article className="rounded-xl border border-brand/15 bg-[#eef2ff] p-4">
             <p className="text-xs uppercase tracking-wide text-muted">Mostrando</p>
             <p className="mt-2 text-2xl font-semibold">{filteredItems.length}</p>
           </article>
@@ -176,7 +176,7 @@ export default function AdminPage() {
 
         {errorMsg ? <p className="rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700">{errorMsg}</p> : null}
 
-        <aside className="space-y-4 rounded-2xl border border-brand/15 bg-white p-5">
+        <aside className="space-y-4 rounded-2xl border border-brand/15 bg-[#eef2ff] p-5">
             <div>
               <h2 className="text-xl font-semibold">Todos los proyectos</h2>
               <p className="mt-1 text-sm text-muted">Buscalos por nombre, anio, categoria o direccion.</p>

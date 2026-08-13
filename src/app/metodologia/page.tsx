@@ -46,7 +46,7 @@ export default async function MetodologiaPage() {
           </Reveal>
           <div className="mt-8 space-y-4">
             {c.pasos.map((paso, idx) => (
-              <Reveal key={paso.numero + idx} delay={idx * 0.05} className="panel relative overflow-hidden border-brand/15 bg-white">
+              <Reveal key={paso.numero + idx} delay={idx * 0.05} className="panel relative overflow-hidden border-brand/15 bg-[#eef2ff]">
                 <div className="grid gap-4 md:grid-cols-[90px_1fr] md:gap-6">
                   <p className="text-xl font-semibold text-brand/55 md:pt-1">
                     {String(idx + 1).padStart(2, "0")}

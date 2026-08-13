@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --surface: #f6f6ff;
+  --background: #e8edff;
+  --surface: #e8edff;
   --foreground: #26276e;
   --muted: #26276eb8;
   --brand: #26276e;
@@ -121,7 +121,7 @@ canvas {
 }
 
 .section-white {
-  @apply bg-white;
+  @apply bg-background;
 }
 
 .section-surface {
@@ -129,7 +129,7 @@ canvas {
 }
 
 .panel {
-  @apply rounded-2xl border border-brand/10 bg-white p-7 shadow-[0_8px_24px_-20px_rgba(38,39,110,0.2)] transition hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-20px_rgba(38,39,110,0.28)];
+  @apply rounded-2xl border border-brand/10 bg-[#eef2ff] p-7 shadow-[0_8px_24px_-20px_rgba(38,39,110,0.2)] transition hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-20px_rgba(38,39,110,0.28)];
 }
 
 .eyebrow {
@@ -137,7 +137,7 @@ canvas {
 }
 
 .icon-shell {
-  @apply inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand/20 bg-white text-muted;
+  @apply inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand/20 bg-[#eef2ff] text-muted;
 }
 
 .timeline-line {

@@ -32,7 +32,7 @@ export default async function ContactoPage() {
           <div className="absolute left-12 top-10 h-56 w-56 rounded-full bg-brand/10 blur-3xl" />
         </div>
         <div className="container-sar space-y-6">
-          <Reveal className="panel relative border-brand/15 bg-white">
+          <Reveal className="panel relative border-brand/15 bg-[#eef2ff]">
             <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">Formulario de contacto</h2>
             <form className="mt-6 space-y-5">
               <div className="grid gap-5 md:grid-cols-2">

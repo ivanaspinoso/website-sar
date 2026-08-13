@@ -43,7 +43,7 @@ export default function AdminLoginPage() {
         <p className="eyebrow">ADMIN</p>
         <h1 className="mt-2 text-3xl font-semibold">Acceso al panel</h1>
 
-        <form onSubmit={handleSubmit} className="mt-8 space-y-4 rounded-2xl border border-brand/15 bg-white p-6">
+        <form onSubmit={handleSubmit} className="mt-8 space-y-4 rounded-2xl border border-brand/15 bg-[#eef2ff] p-6">
           <input
             type="email"
             placeholder="Email"

@@ -15,7 +15,6 @@ function getClient() {
 
 export type MetricaItem = { value: number; prefix?: string; suffix?: string; label: string };
 export type TextItem = { titulo: string; texto: string };
-export type PasoItem = { numero: string; titulo: string; texto: string };
 
 export type HomeContent = {
   hero_titulo: string;
@@ -54,13 +53,6 @@ export type ServiciosContent = {
   tipos: TextItem[];
   postventa_titulo: string;
   postventa_texto: string;
-};
-
-export type MetodologiaContent = {
-  hero_titulo: string;
-  hero_subtitulo: string;
-  intro: string;
-  pasos: PasoItem[];
 };
 
 export type ContactoContent = {
@@ -157,22 +149,6 @@ export const DEFAULT_SERVICIOS: ServiciosContent = {
     "En la etapa de postventa acompañamos a nuestros clientes ante cualquier inconveniente que pueda surgir, garantizando que cada unidad funcione exactamente en las condiciones en que fue pactada.",
 };
 
-export const DEFAULT_METODOLOGIA: MetodologiaContent = {
-  hero_titulo: "Nuestra metodología de trabajo",
-  hero_subtitulo: "Un proceso ejecutado con precisión en cada etapa.",
-  intro:
-    "Nuestra metodología abarca todo el proceso de desarrollo de un emprendimiento: desde la adquisición de la tierra y la definición del proyecto, la contratación de profesionales, la construcción y el marketing, hasta la estructuración jurídica y el seguimiento contable. Cuidamos cada detalle de terminación, priorizando la estética y el uso de materiales vanguardistas y de calidad.",
-  pasos: [
-    { numero: "01", titulo: "Análisis y Viabilidad", texto: "Estudio del terreno, análisis de mercado, factibilidad técnica, legal y financiera del emprendimiento." },
-    { numero: "02", titulo: "Definición del Proyecto", texto: "Concepto arquitectónico, programa de unidades, selección de profesionales clave (arquitecto, ingeniero, etc.)." },
-    { numero: "03", titulo: "Estructuración Jurídica", texto: "Documentación y habilitaciones correspondientes." },
-    { numero: "04", titulo: "Construcción", texto: "Dirección y supervisión de obra. Control de calidad, plazos y presupuesto." },
-    { numero: "05", titulo: "Marketing y Comercialización", texto: "Posicionamiento del producto y estrategia de ventas." },
-    { numero: "06", titulo: "Escrituración", texto: "Acompañamiento del proceso de escrituración de cada unidad funcional." },
-    { numero: "07", titulo: "Post Venta", texto: "Soporte posterior a la entrega para garantizar el correcto funcionamiento de cada unidad." },
-  ],
-};
-
 export const DEFAULT_CONTACTO: ContactoContent = {
   hero_titulo: "Contactanos",
   hero_subtitulo: "Para conocer nuestros proyectos en curso o explorar oportunidades de inversion.",
@@ -201,7 +177,6 @@ type ContentTypeMap = {
   home: HomeContent;
   quienes_somos: QuienesSomosContent;
   servicios: ServiciosContent;
-  metodologia: MetodologiaContent;
   contacto: ContactoContent;
   proyectos: ProyectosContent;
   global: GlobalContent;
@@ -211,7 +186,6 @@ const DEFAULTS: ContentTypeMap = {
   home: DEFAULT_HOME,
   quienes_somos: DEFAULT_QUIENES_SOMOS,
   servicios: DEFAULT_SERVICIOS,
-  metodologia: DEFAULT_METODOLOGIA,
   contacto: DEFAULT_CONTACTO,
   proyectos: DEFAULT_PROYECTOS,
   global: DEFAULT_GLOBAL,

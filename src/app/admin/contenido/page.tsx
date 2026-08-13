@@ -6,21 +6,20 @@ import { useRouter } from "next/navigation";
 import { supabase, SUPABASE_ENV_ERROR } from "@/lib/supabase";
 import {
   DEFAULT_HOME, DEFAULT_QUIENES_SOMOS, DEFAULT_SERVICIOS,
-  DEFAULT_METODOLOGIA, DEFAULT_CONTACTO, DEFAULT_PROYECTOS, DEFAULT_GLOBAL,
+  DEFAULT_CONTACTO, DEFAULT_PROYECTOS, DEFAULT_GLOBAL,
   type HomeContent, type QuienesSomosContent, type ServiciosContent,
-  type MetodologiaContent, type ContactoContent, type ProyectosContent,
-  type GlobalContent, type MetricaItem, type TextItem, type PasoItem,
+  type ContactoContent, type ProyectosContent,
+  type GlobalContent, type MetricaItem, type TextItem,
 } from "@/lib/site-content";
 
 // ─── Types ────────────────────────────────────────────────────────────────
 
-type Tab = "inicio" | "quienes_somos" | "servicios" | "metodologia" | "contacto" | "proyectos" | "global";
+type Tab = "inicio" | "quienes_somos" | "servicios" | "contacto" | "proyectos" | "global";
 
 const TABS: { key: Tab; label: string; href: string; dbKey: string }[] = [
   { key: "inicio",        label: "Inicio",          href: "/",               dbKey: "home" },
   { key: "quienes_somos", label: "Quiénes Somos",   href: "/quienes-somos",  dbKey: "quienes_somos" },
   { key: "servicios",     label: "Servicios",        href: "/servicios",      dbKey: "servicios" },
-  { key: "metodologia",   label: "Metodología",      href: "/metodologia",    dbKey: "metodologia" },
   { key: "contacto",      label: "Contacto",         href: "/contacto",       dbKey: "contacto" },
   { key: "proyectos",     label: "Proyectos",        href: "/proyectos",      dbKey: "proyectos" },
   { key: "global",        label: "Global / Footer",  href: "/",               dbKey: "global" },
@@ -172,49 +171,6 @@ function TextItemListEditor({ label, hint, items, onChange }: {
   );
 }
 
-function PasoListEditor({ items, onChange }: { items: PasoItem[]; onChange: (v: PasoItem[]) => void }) {
-  return (
-    <div className="space-y-3">
-      {items.map((item, idx) => (
-        <div key={idx} className="rounded-xl border border-brand/15 bg-surface p-4 space-y-3">
-          <div className="flex items-center justify-between">
-            <span className="text-lg font-bold text-brand/40">{String(idx + 1).padStart(2, "0")}</span>
-            <button
-              type="button"
-              onClick={() => onChange(items.filter((_, i) => i !== idx))}
-              className="text-xs font-medium text-red-500 hover:text-red-700"
-            >
-              Eliminar
-            </button>
-          </div>
-          <input
-            value={item.titulo}
-            onChange={(e) => { const n = [...items]; n[idx] = { ...n[idx], titulo: e.target.value }; onChange(n); }}
-            placeholder="Título del paso"
-            className="w-full rounded-lg border border-brand/25 px-3 py-2 text-sm focus:outline-none"
-          />
-          <textarea
-            value={item.texto}
-            onChange={(e) => { const n = [...items]; n[idx] = { ...n[idx], texto: e.target.value }; onChange(n); }}
-            placeholder="Descripción del paso"
-            rows={2}
-            className="w-full resize-y rounded-lg border border-brand/25 px-3 py-2 text-sm focus:outline-none"
-          />
-        </div>
-      ))}
-      <button
-        type="button"
-        onClick={() =>
-          onChange([...items, { numero: String(items.length + 1).padStart(2, "0"), titulo: "", texto: "" }])
-        }
-        className="text-sm font-medium text-brand/70 hover:text-brand"
-      >
-        + Agregar paso
-      </button>
-    </div>
-  );
-}
-
 function MetricaListEditor({ items, onChange }: { items: MetricaItem[]; onChange: (v: MetricaItem[]) => void }) {
   return (
     <div className="space-y-3">
@@ -277,7 +233,6 @@ export default function AdminContenidoPage() {
   const [home,         setHome]         = useState<HomeContent>(DEFAULT_HOME);
   const [quienesSomos, setQuienesSomos] = useState<QuienesSomosContent>(DEFAULT_QUIENES_SOMOS);
   const [servicios,    setServicios]    = useState<ServiciosContent>(DEFAULT_SERVICIOS);
-  const [metodologia,  setMetodologia]  = useState<MetodologiaContent>(DEFAULT_METODOLOGIA);
   const [contacto,     setContacto]     = useState<ContactoContent>(DEFAULT_CONTACTO);
   const [proyectos,    setProyectos]    = useState<ProyectosContent>(DEFAULT_PROYECTOS);
   const [global,       setGlobal]       = useState<GlobalContent>(DEFAULT_GLOBAL);
@@ -309,7 +264,6 @@ export default function AdminContenidoPage() {
             if (row.clave === "home")          setHome(v => ({ ...v, ...parsed }));
             if (row.clave === "quienes_somos") setQuienesSomos(v => ({ ...v, ...parsed }));
             if (row.clave === "servicios")     setServicios(v => ({ ...v, ...parsed }));
-            if (row.clave === "metodologia")   setMetodologia(v => ({ ...v, ...parsed }));
             if (row.clave === "contacto")      setContacto(v => ({ ...v, ...parsed }));
             if (row.clave === "proyectos")     setProyectos(v => ({ ...v, ...parsed }));
             if (row.clave === "global")        setGlobal(v => ({ ...v, ...parsed }));
@@ -556,35 +510,6 @@ export default function AdminContenidoPage() {
               onSave={() => save("sv-postventa", "servicios", servicios)}>
               <Field label="Título" value={servicios.postventa_titulo} onChange={(v) => setServicios((s) => ({ ...s, postventa_titulo: v }))} />
               <Field label="Descripción" value={servicios.postventa_texto} onChange={(v) => setServicios((s) => ({ ...s, postventa_texto: v }))} multiline rows={4} />
-            </SectionCard>
-
-          </div>
-        )}
-
-        {/* ── METODOLOGÍA ──────────────────────────────────── */}
-        {activeTab === "metodologia" && (
-          <div className="space-y-5">
-
-            <SectionCard title="Hero — encabezado de página" id="mt-hero" saving={savingKey} saved={savedKey}
-              onSave={() => save("mt-hero", "metodologia", metodologia)}>
-              <Field label="Título principal" value={metodologia.hero_titulo} onChange={(v) => setMetodologia((s) => ({ ...s, hero_titulo: v }))} multiline rows={2} />
-              <Field label="Subtítulo" value={metodologia.hero_subtitulo} onChange={(v) => setMetodologia((s) => ({ ...s, hero_subtitulo: v }))} />
-            </SectionCard>
-
-            <SectionCard title="Párrafo introductorio" id="mt-intro" saving={savingKey} saved={savedKey}
-              onSave={() => save("mt-intro", "metodologia", metodologia)}>
-              <p className="text-xs text-muted/70 rounded-lg bg-surface px-3 py-2">
-                El texto grande centrado que aparece debajo del hero.
-              </p>
-              <Field label="Texto" value={metodologia.intro} onChange={(v) => setMetodologia((s) => ({ ...s, intro: v }))} multiline rows={6} />
-            </SectionCard>
-
-            <SectionCard title="Pasos del proceso (timeline)" id="mt-pasos" saving={savingKey} saved={savedKey}
-              onSave={() => save("mt-pasos", "metodologia", metodologia)}>
-              <p className="text-xs text-muted/70 rounded-lg bg-surface px-3 py-2">
-                Cada paso se numerará automáticamente (01, 02...). Podés reordenar eliminando y volviendo a agregar.
-              </p>
-              <PasoListEditor items={metodologia.pasos} onChange={(v) => setMetodologia((s) => ({ ...s, pasos: v }))} />
             </SectionCard>
 
           </div>

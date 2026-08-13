@@ -67,17 +67,6 @@ export default async function ContactoPage() {
               </button>
             </form>
           </Reveal>
-
-          <Reveal className="panel mx-auto w-full max-w-5xl space-y-4 border-brand/15 bg-gradient-to-b from-white to-surface">
-            <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">Datos de contacto</h2>
-            <div className="grid gap-3 break-words text-muted md:grid-cols-2">
-              <p>🌐 {c.info_web}</p>
-              <p>📧 {c.info_email}</p>
-              <p>📞 {c.info_telefono}</p>
-              <p>💼 LinkedIn: {c.info_linkedin}</p>
-              <p>📸 Instagram: {c.info_instagram}</p>
-            </div>
-          </Reveal>
         </div>
       </section>
     </div>

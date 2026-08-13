@@ -600,20 +600,6 @@ export default function AdminContenidoPage() {
               <Field label="Subtítulo" value={contacto.hero_subtitulo} onChange={(v) => setContacto((s) => ({ ...s, hero_subtitulo: v }))} multiline rows={2} />
             </SectionCard>
 
-            <SectionCard title="Datos de contacto" id="ct-datos" saving={savingKey} saved={savedKey}
-              onSave={() => save("ct-datos", "contacto", contacto)}>
-              <p className="text-xs text-muted/70 rounded-lg bg-surface px-3 py-2">
-                Información que aparece en la tarjeta “Datos de contacto” de la página.
-              </p>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <Field label="Email" value={contacto.info_email} onChange={(v) => setContacto((s) => ({ ...s, info_email: v }))} />
-                <Field label="Teléfono" value={contacto.info_telefono} onChange={(v) => setContacto((s) => ({ ...s, info_telefono: v }))} />
-                <Field label="Sitio web" value={contacto.info_web} onChange={(v) => setContacto((s) => ({ ...s, info_web: v }))} />
-                <Field label="LinkedIn" value={contacto.info_linkedin} onChange={(v) => setContacto((s) => ({ ...s, info_linkedin: v }))} />
-                <Field label="Instagram" value={contacto.info_instagram} onChange={(v) => setContacto((s) => ({ ...s, info_instagram: v }))} />
-              </div>
-            </SectionCard>
-
           </div>
         )}
 

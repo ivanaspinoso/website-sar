@@ -66,11 +66,6 @@ export type MetodologiaContent = {
 export type ContactoContent = {
   hero_titulo: string;
   hero_subtitulo: string;
-  info_email: string;
-  info_telefono: string;
-  info_web: string;
-  info_linkedin: string;
-  info_instagram: string;
 };
 
 export type ProyectosContent = {
@@ -181,11 +176,6 @@ export const DEFAULT_METODOLOGIA: MetodologiaContent = {
 export const DEFAULT_CONTACTO: ContactoContent = {
   hero_titulo: "Contactanos",
   hero_subtitulo: "Para conocer nuestros proyectos en curso o explorar oportunidades de inversion.",
-  info_email: "recepcion@sardesarrollos.com.ar",
-  info_telefono: "11 4331-5829",
-  info_web: "www.sardesarrollos.com.ar",
-  info_linkedin: "Sar Inversiones & Desarrollos",
-  info_instagram: "@Sardesarrollos",
 };
 
 export const DEFAULT_PROYECTOS: ProyectosContent = {

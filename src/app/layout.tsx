@@ -47,9 +47,6 @@ export default async function RootLayout({
                     className="h-16 w-auto"
                   />
                 </Link>
-                <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/80">
-                  {g.footer_descripcion}
-                </p>
               </div>
 
               <div>
@@ -58,7 +55,6 @@ export default async function RootLayout({
                   <Link href="/" className="transition-colors hover:text-white">Inicio</Link>
                   <Link href="/quienes-somos" className="transition-colors hover:text-white">Quienes Somos</Link>
                   <Link href="/servicios" className="transition-colors hover:text-white">Servicios</Link>
-                  <Link href="/metodologia" className="transition-colors hover:text-white">Metodologia</Link>
                   <Link href="/proyectos" className="transition-colors hover:text-white">Proyectos</Link>
                   <Link href="/contacto" className="transition-colors hover:text-white">Contacto</Link>
                 </nav>
@@ -112,9 +108,17 @@ export default async function RootLayout({
                     </svg>
                   </a>
                 </div>
-                <p className="mt-4 text-sm text-white/85">{g.redes_linkedin_label}</p>
               </div>
 
+            </div>
+
+            <div className="mt-10 flex justify-end border-t border-white/10 pt-5">
+              <Link
+                href="/admin/login"
+                className="text-[11px] lowercase tracking-wide text-white/35 transition-colors hover:text-white/70"
+              >
+                admin
+              </Link>
             </div>
           </div>
         </footer>

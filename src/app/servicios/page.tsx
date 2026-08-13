@@ -19,7 +19,7 @@ export default async function ServiciosPage() {
       <section className="relative -mt-24">
         <div className="relative min-h-[64svh] overflow-hidden">
           <video className="absolute inset-0 w-full h-full object-cover" autoPlay loop muted playsInline>
-            <source src="/membrillar1.mp4" type="video/mp4" />
+            <source src="/videonuevo.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(10,13,34,0.62),rgba(38,39,110,0.45))]" />
           <div className="container-sar relative z-10 mt-24 flex min-h-[calc(64svh-6rem)] items-end">
@@ -33,7 +33,7 @@ export default async function ServiciosPage() {
 
       <section className="section-padding section-white">
         <div className="container-sar">
-          <Reveal className="max-w-5xl space-y-5 border-l border-brand/20 pl-4 sm:pl-6 md:pl-10">
+          <Reveal className="max-w-5xl space-y-5">
             <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">{c.management_titulo}</h2>
             <p className="leading-relaxed text-muted">{c.management_texto}</p>
           </Reveal>
@@ -62,7 +62,7 @@ export default async function ServiciosPage() {
           </Reveal>
           <div className="mt-8 grid gap-5 md:grid-cols-3">
             {c.tipos.map((card, idx) => (
-              <Reveal key={card.titulo + idx} delay={idx * 0.08} className="panel border-brand/15 bg-white">
+              <Reveal key={card.titulo + idx} delay={idx * 0.08} className="panel border-brand/15 bg-[#eef2ff]">
                 <p className="leading-relaxed text-muted">
                   <span className="font-bold text-foreground">{card.titulo}</span>{" "}
                   {card.texto}

@@ -15,7 +15,6 @@ import {
 // ─── Types ────────────────────────────────────────────────────────────────
 
 type Tab = "inicio" | "quienes_somos" | "servicios" | "metodologia" | "contacto" | "proyectos" | "global";
-type SaveStatus = "idle" | "saving" | "saved" | "error";
 
 const TABS: { key: Tab; label: string; href: string; dbKey: string }[] = [
   { key: "inicio",        label: "Inicio",          href: "/",               dbKey: "home" },
@@ -46,20 +45,6 @@ function Field({
       ) : (
         <input type="text" value={value} onChange={(e) => onChange(e.target.value)} className={cls} />
       )}
-    </div>
-  );
-}
-
-function NumberField({ label, value, onChange }: { label: string; value: number; onChange: (v: number) => void }) {
-  return (
-    <div className="space-y-1.5">
-      <label className="block text-xs font-semibold uppercase tracking-wide text-muted">{label}</label>
-      <input
-        type="number"
-        value={value}
-        onChange={(e) => onChange(Number(e.target.value))}
-        className="w-full rounded-lg border border-brand/25 bg-white px-3 py-2 text-sm focus:border-brand/60 focus:outline-none"
-      />
     </div>
   );
 }
@@ -95,7 +80,7 @@ function SectionCard({ title, id, saving, saved, onSave, children }: {
   onSave: () => void; children: React.ReactNode;
 }) {
   return (
-    <div className="space-y-5 rounded-2xl border border-brand/15 bg-white p-5 shadow-sm">
+    <div className="space-y-5 rounded-2xl border border-brand/15 bg-[#eef2ff] p-5 shadow-sm">
       <h3 className="border-b border-brand/10 pb-3 text-base font-semibold text-foreground">{title}</h3>
       {children}
       <SaveBtn id={id} saving={saving} saved={saved} onSave={onSave} />
@@ -401,7 +386,7 @@ export default function AdminContenidoPage() {
                 "flex-shrink-0 rounded-lg px-4 py-2 text-sm font-medium transition-colors",
                 activeTab === tab.key
                   ? "bg-foreground text-white shadow"
-                  : "text-muted hover:bg-white hover:text-foreground",
+                  : "text-muted hover:bg-[#eef2ff] hover:text-foreground",
               ].join(" ")}
             >
               {tab.label}
@@ -410,7 +395,7 @@ export default function AdminContenidoPage() {
         </div>
 
         {/* Active tab indicator */}
-        <div className="flex items-center justify-between rounded-xl border border-brand/10 bg-white px-4 py-3">
+        <div className="flex items-center justify-between rounded-xl border border-brand/10 bg-[#eef2ff] px-4 py-3">
           <p className="text-sm font-medium text-foreground">
             Editando: <span className="text-brand">{activeTab_.label}</span>
           </p>
@@ -618,7 +603,7 @@ export default function AdminContenidoPage() {
             <SectionCard title="Datos de contacto" id="ct-datos" saving={savingKey} saved={savedKey}
               onSave={() => save("ct-datos", "contacto", contacto)}>
               <p className="text-xs text-muted/70 rounded-lg bg-surface px-3 py-2">
-                Información que aparece en la tarjeta "Datos de contacto" de la página.
+                Información que aparece en la tarjeta “Datos de contacto” de la página.
               </p>
               <div className="grid gap-4 sm:grid-cols-2">
                 <Field label="Email" value={contacto.info_email} onChange={(v) => setContacto((s) => ({ ...s, info_email: v }))} />
@@ -663,7 +648,7 @@ export default function AdminContenidoPage() {
             <SectionCard title="Footer — datos de contacto" id="gl-contacto" saving={savingKey} saved={savedKey}
               onSave={() => save("gl-contacto", "global", global)}>
               <p className="text-xs text-muted/70 rounded-lg bg-surface px-3 py-2">
-                Email, teléfono y web que aparecen en la columna "Contacto" del footer.
+                Email, teléfono y web que aparecen en la columna “Contacto” del footer.
               </p>
               <div className="grid gap-4 sm:grid-cols-3">
                 <Field label="Email" value={global.contacto_email} onChange={(v) => setGlobal((s) => ({ ...s, contacto_email: v }))} />

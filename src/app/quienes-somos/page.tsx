@@ -32,7 +32,7 @@ export default async function QuienesSomosPage() {
 
       <section className="section-padding section-white">
         <div className="container-sar">
-          <Reveal className="max-w-4xl space-y-5 border-l border-brand/20 pl-4 sm:pl-6 md:pl-10">
+          <Reveal className="max-w-4xl space-y-5">
             <p className="eyebrow">NUESTRA HISTORIA</p>
             <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">{c.historia_titulo}</h2>
             <p className="leading-relaxed text-muted">{c.historia_parrafo1}</p>

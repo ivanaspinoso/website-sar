@@ -6,7 +6,10 @@
       "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\Lenovo\\\\sar-desarrollos\\\\src\" -Recurse -Directory)",
       "Bash(Select-Object -ExpandProperty FullName)",
       "Bash(Sort-Object)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(nslookup tmceuzbnqxxqmhlfdoyp.supabase.co)"
     ]
   }
 }

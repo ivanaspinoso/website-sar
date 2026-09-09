@@ -29,7 +29,7 @@ export default async function ProyectosPage() {
     <div className="section-white">
       <section className="relative -mt-24">
         <div className="relative min-h-[64svh] overflow-hidden">
-          <div className="absolute inset-0 bg-[url('/heroHome.jpg')] bg-cover bg-center" />
+          <div className="absolute inset-0 bg-[url('/imagen-1-home.png')] bg-cover bg-center" />
           <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(10,13,34,0.62),rgba(38,39,110,0.46))]" />
           <div className="container-sar relative mt-24 flex min-h-[calc(64svh-6rem)] items-end">
             <Reveal className="max-w-4xl space-y-5 py-12 text-white sm:py-16 md:py-20">

@@ -22,7 +22,7 @@ export default async function Home() {
       <section id="inicio" className="relative -mt-24">
         <div className="relative min-h-[100svh] overflow-hidden">
           <ParallaxMedia className="absolute inset-0" intensity={20}>
-            <div className="h-[108%] w-full bg-[url('/heroHome.jpg')] bg-cover bg-[center_30%] md:bg-center" />
+            <div className="h-[108%] w-full bg-[url('/imagen-1-home.png')] bg-cover bg-[center_30%] md:bg-center" />
           </ParallaxMedia>
           <div className="absolute inset-0 bg-gradient-to-b from-brand/58 via-brand/24 to-brand/44" />
           <div className="container-sar relative mt-24 flex min-h-[calc(100svh-6rem)] items-center justify-center">

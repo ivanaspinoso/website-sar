@@ -19,7 +19,7 @@ export default async function ServiciosPage() {
       <section className="relative -mt-24">
         <div className="relative min-h-[64svh] overflow-hidden">
           <video className="absolute inset-0 w-full h-full object-cover" autoPlay loop muted playsInline>
-            <source src="/videonuevo.mp4" type="video/mp4" />
+            <source src="/video-web-2.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(10,13,34,0.62),rgba(38,39,110,0.45))]" />
           <div className="container-sar relative z-10 mt-24 flex min-h-[calc(64svh-6rem)] items-end">

@@ -43,6 +43,8 @@ const ESPECIFICACIONES_POR_ID: Record<string, string> = {
     "4.500 m2, 7 pisos, 53 unidades (mono, 2, 3 y 4 amb), pileta con solarium, quincho y SUM, cocheras.",
   "44784560": // Torre del Club Italiano (ficha "Torre Della Fontana")
     "19.000 m2, 23 pisos, +80 unidades funcionales (2, 3 y 4 amb), cocheras.",
+  "481e7009": // Hortiguera 443
+    "1.800 m2, 9 pisos, 17 unidades funcionales (2 y 4 amb), cocheras.",
   "faa7160a": // Poligono del Lago / Club de Campo La Martona
     "30 hectáreas (Club de campo La Martona), 119 lotes de 800 m2 c/u, con laguna, hípica y dolfina.",
 };
